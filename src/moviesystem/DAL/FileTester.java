@@ -14,6 +14,7 @@ import moviesystem.BE.Category;
  */
 public class FileTester
 {
+
     public static void main(String[] args) throws SQLException
     {
         CategoryDAO catDAO = new CategoryDAO();
