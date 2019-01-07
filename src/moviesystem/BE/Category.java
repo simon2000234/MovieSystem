@@ -11,9 +11,16 @@ package moviesystem.BE;
  */
 public class Category
 {
- 
+
     private int categoryId;
-     private String CategoryName;
+    private String CategoryName;
+
+    public Category(int categoryId, String CategoryName)
+    {
+        this.categoryId = categoryId;
+        this.CategoryName = CategoryName;
+    }
+
     /**
      * Get the value of categoryId
      *
@@ -23,8 +30,6 @@ public class Category
     {
         return categoryId;
     }
-
-      
 
     /**
      * Get the value of CategoryName
@@ -46,6 +51,4 @@ public class Category
         this.CategoryName = CategoryName;
     }
 
-
-    
 }
