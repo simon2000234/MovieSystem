@@ -36,4 +36,38 @@ public class MovieDAO
             st.executeUpdate();
         }
     }
+
+    public void deleteMovie(int movieId) throws SQLException
+    {
+        String sql = "DELETE FROM Movie WHERE id =?;";
+        try (Connection con = dbConnect.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, movieId);
+            st.executeUpdate();
+        }
+    }
+
+    public void setPRateMovie(int movieId, double rating) throws SQLException
+    {
+        String sql = "UPDATE Movie set personalRating = ? where id = ?;";
+        try (Connection con = dbConnect.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setDouble(1, rating);
+            st.setDouble(2, movieId);
+            st.executeUpdate();
+        }
+    }
+    public void setLastView(int movieId, int daysSinceLastWatched) throws SQLException
+    {
+         String sql = "UPDATE Movie set lastView = ? where id = ?;";
+         try (Connection con = dbConnect.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setDouble(1, daysSinceLastWatched);
+            st.setDouble(2, movieId);
+            st.executeUpdate();
+        }
+    }
 }

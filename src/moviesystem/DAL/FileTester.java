@@ -13,9 +13,12 @@ import java.sql.SQLException;
  */
 public class FileTester
 {
+
     public static void main(String[] args) throws SQLException
     {
         MovieDAO movieDAO = new MovieDAO();
-        movieDAO.createMovie("Avengers Infinity war ", 10.20 , "hej");
+//        movieDAO.createMovie("Sunset", 5.5, "asd"); 
+//movieDAO.pRateMovie(4, 7.2);
+movieDAO.setLastView(4, 365);
     }
 }
