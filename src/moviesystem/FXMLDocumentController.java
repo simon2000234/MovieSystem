@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 
 /**
  *
@@ -19,10 +20,12 @@ import javafx.scene.control.Label;
 public class FXMLDocumentController implements Initializable
 {
     
-    @FXML
     private Label label;
-    
     @FXML
+    private ListView<?> lstcat;
+    @FXML
+    private ListView<?> lstmovie;
+    
     private void handleButtonAction(ActionEvent event)
     {
         System.out.println("You clicked me!");
@@ -34,5 +37,30 @@ public class FXMLDocumentController implements Initializable
     {
         // TODO
     }    
+
+    @FXML
+    private void handleaddmovie(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void handledeletemovie(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void handleratemovie(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void handleaddcat(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void handledeletecat(ActionEvent event)
+    {
+    }
     
 }
