@@ -20,12 +20,12 @@ public class FileTester
         MovieDAO movieDAO = new MovieDAO();
 //        movieDAO.createMovie("Avengers Infinity war ", 10.20 , "hej");
         
-        catDAO.createCategory("Crime");
+//        catDAO.createCategory("Crime");
 //        catDAO.removeCategory("Action");
-        catDAO.getAllCategories();
-        for (Category cat : catDAO.getAllCategories())
-        {
-            System.out.println(""+cat.getCategoryName());
-        }
+//        catDAO.getAllCategories();
+//        for (Category cat : catDAO.getAllCategories())
+//        {
+//            System.out.println(""+cat.getCategoryName());
+//        }
     }
 }

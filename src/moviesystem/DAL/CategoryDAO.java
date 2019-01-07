@@ -28,8 +28,22 @@ public class CategoryDAO
         dbConnect = new DBConnectionProvider();
     }
 
+    /**
+     * Creates a category in the SQL database with the given parameter as its name
+     * If a category with the given name already exists, another category with
+     * the same name will NOT be created.
+     * @param name 
+     */
     public void createCategory(String name)
     {
+        for (Category cat : getAllCategories())
+        {
+            if (cat.getCategoryName().equals(name))
+            {
+                System.out.println("FAILED: A category with this name already exists");
+                return;
+            }
+        }
         String sql = "INSERT INTO Category(name) VALUES(?);";
 
         try (Connection con = dbConnect.getConnection())
@@ -46,14 +60,18 @@ public class CategoryDAO
         }
     }
 
+    /**
+     * Removes an existing category with the given name.
+     * @param name 
+     */
     public void removeCategory(String name)
     {
-        String sql = "DELETE FROM Category WHERE name='"+name+"';";
+        String sql = "DELETE FROM Category WHERE name='" + name + "';";
 
         try (Connection con = dbConnect.getConnection())
         {
             PreparedStatement st = con.prepareStatement(sql);
-            
+
             st.executeUpdate();
 
         } catch (SQLException ex)
@@ -62,6 +80,10 @@ public class CategoryDAO
         }
     }
 
+    /**
+     * Creates a list with all categories in the database.
+     * @return a list of all categories in the database.
+     */
     public List<Category> getAllCategories()
     {
         String sql = "SELECT * FROM Category";
