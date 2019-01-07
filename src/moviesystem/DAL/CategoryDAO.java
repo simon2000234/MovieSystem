@@ -48,12 +48,12 @@ public class CategoryDAO
 
     public void removeCategory(String name)
     {
-        String sql = "DELETE FROM Category WHERE name=" + name + ";";
+        String sql = "DELETE FROM Category WHERE name='"+name+"';";
 
         try (Connection con = dbConnect.getConnection())
         {
             PreparedStatement st = con.prepareStatement(sql);
-
+            
             st.executeUpdate();
 
         } catch (SQLException ex)
@@ -62,10 +62,10 @@ public class CategoryDAO
         }
     }
 
-    public List getAllCategories()
+    public List<Category> getAllCategories()
     {
         String sql = "SELECT * FROM Category";
-        
+
         ArrayList<Category> allCategories = new ArrayList<>();
 
         try (Connection con = dbConnect.getConnection())
@@ -79,7 +79,7 @@ public class CategoryDAO
                 int id = rs.getInt("id");
                 String name = rs.getNString("name");
                 allCategories.add(new Category(id, name));
-                
+
             }
         } catch (SQLException ex)
         {
