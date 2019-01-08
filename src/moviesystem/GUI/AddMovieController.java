@@ -16,7 +16,8 @@ import javafx.fxml.Initializable;
  */
 public class AddMovieController implements Initializable
 {
-
+    
+       private MovSysModel msmodel;
     /**
      * Initializes the controller class.
      */
@@ -24,6 +25,17 @@ public class AddMovieController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }    
+    }  
+    
+    
+      public MovSysModel getMsmodel()
+    {
+        return msmodel;
+    }
+
+    public void setMsmodel(MovSysModel msmodel)
+    {
+        this.msmodel = msmodel;
+    }
     
 }
