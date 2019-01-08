@@ -30,6 +30,12 @@ public class MovieDAO
 
     public void createMovie(String name, double rating, String filePath, int categoryId) throws SQLException
     {
+        if (rating < 0.0 || rating >10.0)
+        {
+            System.out.println("Ved du hvordan Ratings fungere???");
+            return;
+        }
+        
         String sql = "INSERT INTO Movie(name, rating, filePath) VALUES (?,?,?);";
         String sql2 = "INSERT INTO CatMov(CategoryId, MovieId) VALUES (?,?);";
         try (Connection con = dbConnect.getConnection())
