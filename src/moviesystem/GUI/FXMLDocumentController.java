@@ -51,6 +51,23 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleaddmovie(ActionEvent event)
     {
+         Parent root;
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("moviesystem/GUI/addMovie.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Add a new Movie");
+            stage.setScene(new Scene(root, 350, 350));
+            stage.show();
+
+            AddMovieController AddMovieController = loader.getController();
+            AddMovieController.setMsmodel(msmodel);
+        } catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -61,6 +78,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleratemovie(ActionEvent event)
     {
+       
     }
 
     @FXML
