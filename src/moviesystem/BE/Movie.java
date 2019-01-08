@@ -89,6 +89,12 @@ public class Movie
     {
         this.pRating = pRating;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Movie{" + "id=" + id + ", name=" + name + ", rating=" + rating + ", filePath=" + filePath + ", lastview=" + lastview + ", pRating=" + pRating + '}';
+    }
     
     
 }

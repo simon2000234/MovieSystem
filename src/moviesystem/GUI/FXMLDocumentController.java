@@ -7,6 +7,7 @@ package moviesystem.GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,11 +15,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import moviesystem.BE.Category;
+import moviesystem.BE.Movie;
 
 /**
  *
@@ -31,8 +36,10 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private ListView<Category> lstcat;
     @FXML
-    private ListView<?> lstmovie;
+    private ListView<Movie> lstmovie;
     private MovSysModel msmodel;
+    @FXML
+    private TextField txtfilter;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -100,13 +107,28 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handledeletecat(ActionEvent event)
     {
+        Alert confirmDelete = new Alert(Alert.AlertType.CONFIRMATION, "Delete: " + msmodel.getSelectedCategory().getCategoryName() + "?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        confirmDelete.setTitle("Delete Category");
+        confirmDelete.setHeaderText("Are you sure?");
+        confirmDelete.showAndWait();
+
+        if (confirmDelete.getResult() == ButtonType.YES)
+        {
+            msmodel.deleteCategory(msmodel.getSelectedCategory());
+        }
     }
 
     @FXML
-    private void handleClickOnCategory(MouseEvent event)
+    private void handleClickOnCategory(MouseEvent event) throws SQLException
     {
         Category currentcat = lstcat.getSelectionModel().getSelectedItem();
         msmodel.setSelectedCategory(currentcat);
         System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
+        lstmovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
+    }
+
+    @FXML
+    private void handletxtfilter(ActionEvent event)
+    {
     }
 }

@@ -8,6 +8,7 @@ package moviesystem.BLL;
 import java.sql.SQLException;
 import java.util.List;
 import moviesystem.BE.Category;
+import moviesystem.BE.Movie;
 import moviesystem.DAL.CategoryDAO;
 import moviesystem.DAL.MovieDAO;
 
@@ -27,9 +28,9 @@ public class MovSysManager
         movDAO = new MovieDAO();
     }
 
-    public void createMovie(String name, double rating, String filePath) throws SQLException
+    public void createMovie(String name, double rating, String filePath, int categoryId) throws SQLException
     {
-        movDAO.createMovie(name, rating, filePath);
+        movDAO.createMovie(name, rating, filePath, categoryId);
     }
 
     public void deleteMovie(int movieId) throws SQLException
@@ -41,33 +42,32 @@ public class MovSysManager
     {
         movDAO.setPRateMovie(movieId, rating);
     }
-    
+
     public void setLastView(int movieId, int daysSinceLastWatched) throws SQLException
     {
         movDAO.setLastView(movieId, daysSinceLastWatched);
     }
-    
+
     public Category createCategory(String name)
     {
         Category newCat;
         newCat = catDAO.createCategory(name);
         return newCat;
     }
-    
+
     public void removeCategory(String name)
     {
         catDAO.removeCategory(name);
     }
-    
+
     public List<Category> getAllCategories()
     {
         return catDAO.getAllCategories();
     }
 
+    public List<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
+    {
+        return movDAO.getAllMoviesInACategory(categoryId);
+    }
 
-
-
-
-
-    
 }
