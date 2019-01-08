@@ -14,6 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -80,6 +82,15 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handledeletecat(ActionEvent event)
     {
+        Alert confirmDelete = new Alert(Alert.AlertType.CONFIRMATION, "Delete: " + msmodel.getSelectedCategory().getCategoryName() + "?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        confirmDelete.setTitle("Delete Category");
+        confirmDelete.setHeaderText("Are you sure?");
+        confirmDelete.showAndWait();
+
+        if (confirmDelete.getResult() == ButtonType.YES)
+        {
+            msmodel.deleteCategory(msmodel.getSelectedCategory());
+        }
     }
 
     @FXML

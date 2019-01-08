@@ -43,6 +43,12 @@ public class MovSysModel
         categories.add(newCategory);
     }
 
+    public void deleteCategory(Category category)
+    {
+        categories.remove(category);
+        msm.removeCategory(category.getCategoryName());
+    }
+
     public Category getSelectedCategory()
     {
         return selectedCategory;
