@@ -7,6 +7,7 @@ package moviesystem.GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import moviesystem.BE.Category;
+import moviesystem.BE.Movie;
 
 /**
  *
@@ -33,7 +35,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private ListView<Category> lstcat;
     @FXML
-    private ListView<?> lstmovie;
+    private ListView<Movie> lstmovie;
     private MovSysModel msmodel;
 
     @Override
@@ -96,10 +98,11 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
-    private void handleClickOnCategory(MouseEvent event)
+    private void handleClickOnCategory(MouseEvent event) throws SQLException
     {
         Category currentcat = lstcat.getSelectionModel().getSelectedItem();
         msmodel.setSelectedCategory(currentcat);
         System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
+        lstmovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
     }
 }

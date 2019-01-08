@@ -5,6 +5,8 @@
  */
 package moviesystem.GUI;
 
+import java.sql.SQLException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import moviesystem.BE.Category;
@@ -27,7 +29,6 @@ public class MovSysModel
     {
         this.msm = new MovSysManager();
         this.movies = FXCollections.observableArrayList();
-//        movies.addAll()
         this.categories = FXCollections.observableArrayList();
         categories.addAll(msm.getAllCategories());
     }
@@ -58,5 +59,13 @@ public class MovSysModel
     {
         this.selectedCategory = selectedCategory;
     }
+    
+    public ObservableList<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
+    {
+        movies.clear();
+        movies.addAll(msm.getAllMoviesInACategory(categoryId));
+        return movies;
+    }
+
 
 }
