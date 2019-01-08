@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import moviesystem.BE.Category;
@@ -37,6 +38,8 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private ListView<Movie> lstmovie;
     private MovSysModel msmodel;
+    @FXML
+    private TextField txtfilter;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -104,5 +107,10 @@ public class FXMLDocumentController implements Initializable
         msmodel.setSelectedCategory(currentcat);
         System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
         lstmovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
+    }
+
+    @FXML
+    private void handletxtfilter(ActionEvent event)
+    {
     }
 }
