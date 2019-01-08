@@ -47,9 +47,11 @@ public class MovSysManager
         movDAO.setLastView(movieId, daysSinceLastWatched);
     }
     
-    public void createCategory(String name)
+    public Category createCategory(String name)
     {
-        catDAO.createCategory(name);
+        Category newCat;
+        newCat = catDAO.createCategory(name);
+        return newCat;
     }
     
     public void removeCategory(String name)

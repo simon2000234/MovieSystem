@@ -16,6 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import moviesystem.BE.Category;
 
 /**
  *
@@ -23,19 +26,20 @@ import javafx.scene.control.ListView;
  */
 public class FXMLDocumentController implements Initializable
 {
-    
+
     private Label label;
     @FXML
-    private ListView<?> lstcat;
+    private ListView<Category> lstcat;
     @FXML
     private ListView<?> lstmovie;
-    
-    
+    private MovSysModel msmodel;
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
-    }    
+        this.msmodel = new MovSysModel();
+        lstcat.setItems(msmodel.getCategories());
+    }
 
     @FXML
     private void handleaddmovie(ActionEvent event)
@@ -55,9 +59,24 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleaddcat(ActionEvent event) throws IOException
     {
-         
-        
-        
+
+        Parent root;
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("moviesystem/GUI/AddCategoryWindow.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Add a new Category");
+            stage.setScene(new Scene(root, 300, 250));
+            stage.show();
+
+            AddCategoryWindowController addCategoryWindowController = loader.getController();
+            addCategoryWindowController.setMsmodel(msmodel);
+        } catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -65,5 +84,11 @@ public class FXMLDocumentController implements Initializable
     {
     }
 
-    
+    @FXML
+    private void handleClickOnCategory(MouseEvent event)
+    {
+        Category currentcat = lstcat.getSelectionModel().getSelectedItem();
+        msmodel.setSelectedCategory(currentcat);
+        System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
+    }
 }
