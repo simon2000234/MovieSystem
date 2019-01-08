@@ -34,14 +34,14 @@ public class CategoryDAO
      * the same name will NOT be created.
      * @param name 
      */
-    public void createCategory(String name)
+    public Category createCategory(String name)
     {
         for (Category cat : getAllCategories())
         {
             if (cat.getCategoryName().equals(name))
             {
                 System.out.println("FAILED: A category with this name already exists");
-                return;
+                return null;
             }
         }
         String sql = "INSERT INTO Category(name) VALUES(?);";
@@ -53,11 +53,21 @@ public class CategoryDAO
             st.setString(1, name);
 
             int rowsAffected = st.executeUpdate();
+            
+            ResultSet rs = st.getGeneratedKeys();
+            int id = 0;
+            if (rs.next())
+            {
+                id = rs.getInt(1);
+            }
+            Category nCategory = new Category(id, name);
+            return nCategory;
 
         } catch (SQLException ex)
         {
             //nothing
         }
+        return null;
     }
 
     /**

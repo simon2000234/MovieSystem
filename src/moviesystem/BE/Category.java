@@ -17,8 +17,8 @@ public class Category
 
     public Category(int categoryId, String CategoryName)
     {
-        this.categoryId=categoryId;
-        this.CategoryName=CategoryName;
+        this.categoryId = categoryId;
+        this.CategoryName = CategoryName;
     }
 
     /**
@@ -49,6 +49,12 @@ public class Category
     public void setCategoryName(String CategoryName)
     {
         this.CategoryName = CategoryName;
+    }
+
+    @Override
+    public String toString()
+    {
+        return ""+CategoryName;
     }
 
 }
