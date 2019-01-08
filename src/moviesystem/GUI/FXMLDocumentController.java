@@ -108,4 +108,9 @@ public class FXMLDocumentController implements Initializable
         System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
         lstmovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
     }
+
+    @FXML
+    private void handletxtfilter(ActionEvent event)
+    {
+    }
 }
