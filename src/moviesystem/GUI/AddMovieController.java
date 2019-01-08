@@ -7,7 +7,10 @@ package moviesystem.GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -18,6 +21,8 @@ public class AddMovieController implements Initializable
 {
     
        private MovSysModel msmodel;
+    @FXML
+    private TextField txtMovieName;
     /**
      * Initializes the controller class.
      */
@@ -36,6 +41,17 @@ public class AddMovieController implements Initializable
     public void setMsmodel(MovSysModel msmodel)
     {
         this.msmodel = msmodel;
+    }
+
+    @FXML
+    private void handleAddMovie(ActionEvent event)
+    {
+       
+    }
+
+    @FXML
+    private void handleChanelMovie(ActionEvent event)
+    {
     }
     
 }
