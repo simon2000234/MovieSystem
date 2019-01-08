@@ -32,7 +32,7 @@ public class MovieDAO
     {
         if (rating < 0.0 || rating >10.0)
         {
-            System.out.println("Ved du hvordan Ratings fungere???");
+            System.out.println("kun 0.0 til 10.0 dit fjols");
             return;
         }
         
