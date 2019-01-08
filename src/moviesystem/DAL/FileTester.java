@@ -6,8 +6,10 @@
 package moviesystem.DAL;
 
 import java.sql.SQLException;
+import java.util.List;
 import moviesystem.BE.Category;
-
+import moviesystem.BE.Movie;
+            
 /**
  *
  * @author Richart hansen
@@ -19,14 +21,5 @@ public class FileTester
     {
         CategoryDAO catDAO = new CategoryDAO();
         MovieDAO movieDAO = new MovieDAO();
-//        movieDAO.createMovie("Avengers Infinity war ", 10.20 , "hej");
-        
-//        catDAO.createCategory("Crime");
-//        catDAO.removeCategory("Action");
-//        catDAO.getAllCategories();
-//        for (Category cat : catDAO.getAllCategories())
-//        {
-//            System.out.println(""+cat.getCategoryName());
-//        }
     }
 }
