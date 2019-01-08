@@ -27,9 +27,9 @@ public class MovSysManager
         movDAO = new MovieDAO();
     }
 
-    public void createMovie(String name, double rating, String filePath) throws SQLException
+    public void createMovie(String name, double rating, String filePath, int categoryId) throws SQLException
     {
-        movDAO.createMovie(name, rating, filePath);
+        movDAO.createMovie(name, rating, filePath, categoryId);
     }
 
     public void deleteMovie(int movieId) throws SQLException
@@ -63,11 +63,4 @@ public class MovSysManager
     {
         return catDAO.getAllCategories();
     }
-
-
-
-
-
-
-    
 }

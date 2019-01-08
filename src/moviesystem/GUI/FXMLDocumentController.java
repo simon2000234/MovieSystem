@@ -59,8 +59,9 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
-    private void handleaddcat(ActionEvent event)
+    private void handleaddcat(ActionEvent event) throws IOException
     {
+
         Parent root;
         try
         {
@@ -77,6 +78,7 @@ public class FXMLDocumentController implements Initializable
         {
             ex.printStackTrace();
         }
+
     }
 
     @FXML
@@ -100,5 +102,4 @@ public class FXMLDocumentController implements Initializable
         msmodel.setSelectedCategory(currentcat);
         System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
     }
-
 }
