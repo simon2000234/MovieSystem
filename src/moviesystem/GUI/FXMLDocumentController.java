@@ -61,7 +61,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleaddmovie(ActionEvent event)
     {
-         Parent root;
+        Parent root;
         try
         {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("moviesystem/GUI/addMovie.fxml"));
@@ -88,7 +88,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleratemovie(ActionEvent event)
     {
-       
+
     }
 
     @FXML
@@ -146,14 +146,30 @@ public class FXMLDocumentController implements Initializable
     private void handleCategorySelect(ActionEvent event)
     {
         msmodel.addCatToFilter(cmbCategorySelecter.getSelectionModel().getSelectedItem());
-        for (Category cat : msmodel.getCatFilter())
+    }
+
+    @FXML
+    private void handlePlayMovie(ActionEvent event)
+    {
+        if (msmodel.getLastClickedMovie() == null)
         {
-            System.out.println(""+cat.getCategoryName());
+            System.out.println("No movie selected dum dum");
+        } else
+        {
+            msmodel.PlayMovie(msmodel.getLastClickedMovie());
         }
     }
 
     @FXML
     private void handleClearFilterButton(ActionEvent event)
     {
+    
+    }
+
+    @FXML
+    private void handleClickOnMovie(MouseEvent event)
+    {
+        Movie lastClickedMovie = lstmovie.getSelectionModel().getSelectedItem();
+        msmodel.setLastClickedMovie(lastClickedMovie);
     }
 }
