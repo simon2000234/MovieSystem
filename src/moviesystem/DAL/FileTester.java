@@ -5,14 +5,12 @@
  */
 package moviesystem.DAL;
 
-import java.awt.Desktop;
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
-import moviesystem.BE.Category;
-import moviesystem.BE.Movie;
-import moviesystem.BLL.MovSysManager;
+import javax.lang.model.element.Element;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
             
 /**
  *
@@ -23,9 +21,23 @@ public class FileTester
 
     public static void main(String[] args) throws SQLException, IOException
     {
-        CategoryDAO catDAO = new CategoryDAO();
-        MovieDAO movieDAO = new MovieDAO();
-        MovSysManager msm = new MovSysManager();
-        
+       try{
+        Document doc = Jsoup.connect("https://www.imdb.com/title/tt1517451/?ref_=nv_sr_2/").userAgent("Mozilla/17.0").get();
+           Elements temp=doc.select("div.imdbRating");
+           
+           int i= 1;
+           for(org.jsoup.nodes.Element ratingValue:temp)
+           {
+               i++;
+               System.out.println(i+""+ ratingValue.getElementsByTag("span").first().text() );
+                  
+           }
+       }
+       catch (IOException e) 
+       {
+           
+       }
+       
     }
+    
 }
