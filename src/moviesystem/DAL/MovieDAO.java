@@ -87,13 +87,13 @@ public class MovieDAO
         }
     }
 
-    public void setLastView(int movieId, int daysSinceLastWatched) throws SQLException
+    public void setLastView(int movieId, String dayWatched) throws SQLException
     {
         String sql = "UPDATE Movie set lastView = ? where id = ?;";
         try (Connection con = dbConnect.getConnection())
         {
             PreparedStatement st = con.prepareStatement(sql);
-            st.setDouble(1, daysSinceLastWatched);
+            st.setString(1, dayWatched);
             st.setDouble(2, movieId);
             st.executeUpdate();
         }
@@ -116,7 +116,7 @@ public class MovieDAO
                 String name = rs.getString("name");
                 double rating = rs.getDouble("rating");
                 String filePath = rs.getString("filePath");
-                int lastview = rs.getInt("lastView");
+                String lastview = rs.getString("lastView");
                 double pRating = rs.getInt("personalRating");
                 Movie movie = new Movie(id, name, rating, filePath, lastview, pRating);
                 Movies.add(movie);
