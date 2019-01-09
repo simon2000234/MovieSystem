@@ -5,8 +5,13 @@
  */
 package moviesystem.GUI;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import moviesystem.BE.Category;
@@ -24,6 +29,7 @@ public class MovSysModel
     private ObservableList<Movie> movies;
     private ObservableList<Category> categories;
     private Category selectedCategory;
+    private Movie lastClickedMovie;
 
     public MovSysModel()
     {
@@ -59,7 +65,7 @@ public class MovSysModel
     {
         this.selectedCategory = selectedCategory;
     }
-    
+
     public ObservableList<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
     {
         movies.clear();
@@ -67,5 +73,27 @@ public class MovSysModel
         return movies;
     }
 
+    public void PlayMovie(Movie movie)
+    {
+        try
+        {
+            Desktop.getDesktop().open(new File(movie.getFilePath()));
+        } 
+        catch (IOException ex)
+        {
+            //northing dab dab
+        }
+    }
+
+    public Movie getLastClickedMovie()
+    {
+        return lastClickedMovie;
+    }
+
+    public void setLastClickedMovie(Movie lastClickedMovie)
+    {
+        this.lastClickedMovie = lastClickedMovie;
+    }
+    
 
 }
