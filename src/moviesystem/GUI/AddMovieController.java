@@ -45,7 +45,7 @@ public class AddMovieController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-       lstCategory.setItems(msmodel.getCategories());
+      
     }
 
     public MovSysModel getMsmodel()
@@ -67,6 +67,12 @@ public class AddMovieController implements Initializable
     @FXML
     private void handleChanelMovie(ActionEvent event)
     {
+    }
+
+    @FXML
+    private void BtnGetCategory(ActionEvent event)
+    {
+         lstCategory.setItems(msmodel.getCategories());
     }
  
 }
