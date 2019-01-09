@@ -28,6 +28,7 @@ public class AddMovieController implements Initializable
 {
 
     private MovSysModel msmodel;
+    private MovSysModel movieModel;
     
     
     @FXML
@@ -45,7 +46,8 @@ public class AddMovieController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-       lstCategory.setItems(msmodel.getCategories());
+        movieModel = new MovSysModel();
+       lstCategory.setItems(movieModel.getCategories());
     }
 
     public MovSysModel getMsmodel()
