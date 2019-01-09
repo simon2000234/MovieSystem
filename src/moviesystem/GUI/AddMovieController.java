@@ -34,7 +34,8 @@ public class AddMovieController implements Initializable
     private MovSysModel msmodel;
     private MovSysManager movSysManager;
     private String filepath;
-    
+   private MovSysModel movieModel;
+ 
     @FXML
     private TextField txtMovieName;
     @FXML
@@ -50,7 +51,6 @@ public class AddMovieController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-   
     }
 
     public MovSysModel getMsmodel()
@@ -74,16 +74,4 @@ public class AddMovieController implements Initializable
             Logger.getLogger(AddMovieController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @FXML
-    private void handleChanelMovie(ActionEvent event)
-    {
-    }
-
-    @FXML
-    private void BtnGetCategory(ActionEvent event)
-    {
-         lstCategory.setItems(msmodel.getCategories());
-    }
- 
 }
