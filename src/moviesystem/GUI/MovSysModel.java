@@ -29,6 +29,7 @@ public class MovSysModel
     private MovSysManager msm;
     private ObservableList<Movie> movies;
     private ObservableList<Category> categories;
+    
     private Category selectedCategory;
     private ArrayList<Category> catSelecter;
     private ArrayList<Category> filterCat;
