@@ -8,6 +8,8 @@ package moviesystem.GUI;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +18,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -40,12 +44,20 @@ public class FXMLDocumentController implements Initializable
     private MovSysModel msmodel;
     @FXML
     private TextField txtfilter;
+    @FXML
+    private ComboBox<Category> cmbCategorySelecter;
+    @FXML
+    private ListView<Category> lstActiveCatFilter;
+    @FXML
+    private Button btnClearFilter;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         this.msmodel = new MovSysModel();
         lstcat.setItems(msmodel.getCategories());
+        cmbCategorySelecter.getItems().addAll(msmodel.getCatSelect());
+        lstActiveCatFilter.setItems(msmodel.getActiveCatFilter());
     }
 
     @FXML
@@ -133,6 +145,19 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    private void handleCategorySelect(ActionEvent event)
+    {
+        if (msmodel.getCatFilter().contains(cmbCategorySelecter.getSelectionModel().getSelectedItem()))
+        {
+            //do nothing
+        }
+        else
+        {
+            msmodel.addCatToFilter(cmbCategorySelecter.getSelectionModel().getSelectedItem());
+        }
+    }
+
+    @FXML
     private void handlePlayMovie(ActionEvent event)
     {
         if (msmodel.getLastClickedMovie() == null)
@@ -141,7 +166,15 @@ public class FXMLDocumentController implements Initializable
         } else
         {
             msmodel.PlayMovie(msmodel.getLastClickedMovie());
+            String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+            msmodel.setLastView(msmodel.getLastClickedMovie().getId(), timeStamp);
         }
+    }
+
+    @FXML
+    private void handleClearFilterButton(ActionEvent event)
+    {
+
     }
 
     @FXML
