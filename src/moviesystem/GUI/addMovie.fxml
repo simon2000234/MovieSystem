@@ -23,6 +23,5 @@
       <Button fx:id="BtnFilePicker" layoutX="139.0" layoutY="189.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="choose file" />
       <Label layoutX="296.0" layoutY="94.0" text="pick category:" />
       <ListView fx:id="lstCategory" accessibleRole="IMAGE_VIEW" layoutX="378.0" layoutY="96.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button layoutX="378.0" layoutY="305.0" mnemonicParsing="false" onAction="#BtnGetCategory" text="Get category" />
    </children>
 </AnchorPane>

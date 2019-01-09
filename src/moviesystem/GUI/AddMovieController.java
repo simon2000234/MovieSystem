@@ -78,4 +78,9 @@ public class AddMovieController implements Initializable
             Logger.getLogger(AddMovieController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void handleChanelMovie(ActionEvent event)
+    {
+    }
 }
