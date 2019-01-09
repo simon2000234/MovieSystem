@@ -5,12 +5,17 @@
  */
 package moviesystem.GUI;
 
+import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import moviesystem.BE.Category;
+import moviesystem.BLL.MovSysManager;
 
 /**
  * FXML Controller class
@@ -21,8 +26,15 @@ public class AddMovieController implements Initializable
 {
     
        private MovSysModel msmodel;
+       private MovSysManager movSysmanager;
     @FXML
     private TextField txtMovieName;
+    @FXML
+    private TextField txtRating;
+    @FXML
+    private Button FilePickerBtn;
+    @FXML
+    private ListView<Category> pickCategory;
     /**
      * Initializes the controller class.
      */
@@ -46,7 +58,7 @@ public class AddMovieController implements Initializable
     @FXML
     private void handleAddMovie(ActionEvent event)
     {
-       
+    
     }
 
     @FXML

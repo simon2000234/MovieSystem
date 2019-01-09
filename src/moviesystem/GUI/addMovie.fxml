@@ -2,26 +2,26 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="moviesystem.GUI.AddMovieController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviesystem.GUI.AddMovieController">
    <children>
       <TextField fx:id="txtMovieName" layoutX="139.0" layoutY="89.0" prefHeight="25.0" prefWidth="131.0" />
-      <Button layoutX="139.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleAddMovie" prefHeight="25.0" prefWidth="53.0" text="add" />
-      <Button layoutX="211.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleChanelMovie" prefHeight="25.0" prefWidth="53.0" text="chanel" />
-      <Label layoutX="148.0" layoutY="33.0" text="Add Movie">
+      <Button layoutX="133.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleAddMovie" prefHeight="25.0" prefWidth="55.0" text="add" />
+      <Button layoutX="453.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleChanelMovie" prefHeight="25.0" prefWidth="55.0" text="chanel" />
+      <Label layoutX="231.0" layoutY="21.0" text="Add Movie">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
       <Label layoutX="39.0" layoutY="92.0" text="Movie Name:" />
       <Label layoutX="35.0" layoutY="141.0" text="you're rating" />
-      <TextField layoutX="138.0" layoutY="137.0" prefHeight="25.0" prefWidth="131.0" />
-      <Button layoutX="139.0" layoutY="189.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="choose file" />
-      <Label layoutX="47.0" layoutY="259.0" text="pick category" />
-      <TextField layoutX="139.0" layoutY="255.0" prefHeight="25.0" prefWidth="131.0" />
+      <TextField fx:id="txtRating" layoutX="138.0" layoutY="137.0" prefHeight="25.0" prefWidth="131.0" />
+      <Button fx:id="FilePickerBtn" layoutX="139.0" layoutY="189.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="choose file" />
+      <Label layoutX="296.0" layoutY="94.0" text="pick category:" />
+      <ListView fx:id="pickCategory" layoutX="378.0" layoutY="96.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
