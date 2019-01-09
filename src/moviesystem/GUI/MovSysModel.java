@@ -35,7 +35,7 @@ public class MovSysModel
     private ArrayList<Category> filterCat;
     private ObservableList<Category> activeFilterCat;
     private Movie lastClickedMovie;
-    
+
     public MovSysModel()
     {
         this.msm = new MovSysManager();
@@ -57,6 +57,12 @@ public class MovSysModel
     public ObservableList<Category> getActiveCatFilter()
     {
         return activeFilterCat;
+    }
+
+    public void clearFilter()
+    {
+        filterCat.clear();
+        activeFilterCat.clear();
     }
 
     public Category addCatToFilter(Category category)
@@ -110,8 +116,7 @@ public class MovSysModel
         try
         {
             Desktop.getDesktop().open(new File(movie.getFilePath()));
-        } 
-        catch (IOException ex)
+        } catch (IOException ex)
         {
             //northing dab dab
         }
@@ -126,7 +131,7 @@ public class MovSysModel
     {
         this.lastClickedMovie = lastClickedMovie;
     }
-    
+
     public void setLastView(int movieId, String dayWatched)
     {
         try

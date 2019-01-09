@@ -174,6 +174,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleClearFilterButton(ActionEvent event)
     {
+        msmodel.clearFilter();
 
     }
 
