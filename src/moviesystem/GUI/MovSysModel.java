@@ -28,6 +28,7 @@ public class MovSysModel
     private MovSysManager msm;
     private ObservableList<Movie> movies;
     private ObservableList<Category> categories;
+    
     private Category selectedCategory;
     private Movie lastClickedMovie;
 

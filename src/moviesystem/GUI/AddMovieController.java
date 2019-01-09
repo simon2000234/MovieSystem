@@ -8,6 +8,8 @@ package moviesystem.GUI;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,9 +26,10 @@ import moviesystem.BLL.MovSysManager;
  */
 public class AddMovieController implements Initializable
 {
+
+    private MovSysModel msmodel;
     
-       private MovSysModel msmodel;
-       private MovSysManager movSysmanager;
+    
     @FXML
     private TextField txtMovieName;
     @FXML
@@ -34,18 +37,18 @@ public class AddMovieController implements Initializable
     @FXML
     private Button FilePickerBtn;
     @FXML
-    private ListView<Category> pickCategory;
+    private ListView<Category> lstCategory;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
-    }  
-    
-    
-      public MovSysModel getMsmodel()
+       lstCategory.setItems(msmodel.getCategories());
+    }
+
+    public MovSysModel getMsmodel()
     {
         return msmodel;
     }
@@ -58,12 +61,12 @@ public class AddMovieController implements Initializable
     @FXML
     private void handleAddMovie(ActionEvent event)
     {
-    
+
     }
 
     @FXML
     private void handleChanelMovie(ActionEvent event)
     {
     }
-    
+ 
 }
