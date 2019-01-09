@@ -145,7 +145,14 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleCategorySelect(ActionEvent event)
     {
-        msmodel.addCatToFilter(cmbCategorySelecter.getSelectionModel().getSelectedItem());
+        if (msmodel.getCatFilter().contains(cmbCategorySelecter.getSelectionModel().getSelectedItem()))
+        {
+            //do nothing
+        }
+        else
+        {
+            msmodel.addCatToFilter(cmbCategorySelecter.getSelectionModel().getSelectedItem());
+        }
     }
 
     @FXML
@@ -163,7 +170,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleClearFilterButton(ActionEvent event)
     {
-    
+
     }
 
     @FXML
