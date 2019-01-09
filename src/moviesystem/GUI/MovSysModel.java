@@ -29,7 +29,7 @@ public class MovSysModel
     private MovSysManager msm;
     private ObservableList<Movie> movies;
     private ObservableList<Category> categories;
-    
+
     private Category selectedCategory;
     private ArrayList<Category> catSelecter;
     private ArrayList<Category> filterCat;
@@ -142,5 +142,17 @@ public class MovSysModel
             //yolo
         }
     }
+
+    public void setPRateMovie(int movieId, double rating)
+    {
+        try
+        {
+            msm.setPRateMovie(movieId, rating);
+        } catch (SQLException ex)
+        {
+            //We are the Champions
+        }
+    }
+
 
 }

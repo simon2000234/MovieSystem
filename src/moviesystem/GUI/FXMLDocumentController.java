@@ -88,9 +88,33 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
-    private void handleratemovie(ActionEvent event)
+    private void handleratemovie(ActionEvent event) throws IOException
     {
 
+        if (msmodel.getLastClickedMovie() == null)
+        {
+            System.out.println("Please Sellected a movie to rate");
+            return;
+        } else
+        {
+            Parent root;
+            try
+            {
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("moviesystem/GUI/RateMovie.fxml"));
+                root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Rate a Moive");
+                stage.setScene(new Scene(root, 600, 400));
+                stage.show();
+
+                RateMovieController rmController = loader.getController();
+                rmController.setMsmodel(msmodel);
+
+            } catch (IOException ex)
+            {
+                //something
+            }
+        }
     }
 
     @FXML
@@ -150,8 +174,7 @@ public class FXMLDocumentController implements Initializable
         if (msmodel.getCatFilter().contains(cmbCategorySelecter.getSelectionModel().getSelectedItem()))
         {
             //do nothing
-        }
-        else
+        } else
         {
             msmodel.addCatToFilter(cmbCategorySelecter.getSelectionModel().getSelectedItem());
         }
