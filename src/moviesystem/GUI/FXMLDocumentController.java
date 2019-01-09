@@ -50,6 +50,10 @@ public class FXMLDocumentController implements Initializable
     private ListView<Category> lstActiveCatFilter;
     @FXML
     private Button btnClearFilter;
+    @FXML
+    private TextField txtRatingIMDB;
+    @FXML
+    private TextField txtPersonalRating;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -175,7 +179,6 @@ public class FXMLDocumentController implements Initializable
     private void handleClearFilterButton(ActionEvent event)
     {
         msmodel.clearFilter();
-
     }
 
     @FXML

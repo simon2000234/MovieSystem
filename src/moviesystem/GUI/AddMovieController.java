@@ -32,9 +32,10 @@ public class AddMovieController implements Initializable
 {
 
     private MovSysModel msmodel;
+    private MovSysModel movieModel;
     private MovSysManager movSysManager;
     private String filepath;
-   private MovSysModel movieModel;
+
  
     @FXML
     private TextField txtMovieName;
@@ -51,6 +52,9 @@ public class AddMovieController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        movieModel = new MovSysModel();
+       lstCategory.setItems(movieModel.getCategories());
+
     }
 
     public MovSysModel getMsmodel()
