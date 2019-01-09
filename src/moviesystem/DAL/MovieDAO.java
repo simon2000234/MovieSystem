@@ -56,7 +56,6 @@ public class MovieDAO
             st2.setInt(1, categoryId);
             st2.setInt(2, movId);
             st2.executeUpdate();
-
         }
     }
 

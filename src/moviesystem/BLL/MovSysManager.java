@@ -5,8 +5,11 @@
  */
 package moviesystem.BLL;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import moviesystem.BE.Category;
 import moviesystem.BE.Movie;
 import moviesystem.DAL.CategoryDAO;
@@ -18,7 +21,7 @@ import moviesystem.DAL.MovieDAO;
  */
 public class MovSysManager
 {
-
+    private MediaPlayer mediaPlayer;
     private CategoryDAO catDAO;
     private MovieDAO movDAO;
 
@@ -69,5 +72,4 @@ public class MovSysManager
     {
         return movDAO.getAllMoviesInACategory(categoryId);
     }
-
 }
