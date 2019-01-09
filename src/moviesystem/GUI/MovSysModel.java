@@ -6,6 +6,7 @@
 package moviesystem.GUI;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +25,9 @@ public class MovSysModel
     private ObservableList<Movie> movies;
     private ObservableList<Category> categories;
     private Category selectedCategory;
+    private ArrayList<Category> catSelecter;
+    private ArrayList<Category> filterCat;
+    private ObservableList<Category> activeFilterCat;
 
     public MovSysModel()
     {
@@ -31,11 +35,38 @@ public class MovSysModel
         this.movies = FXCollections.observableArrayList();
         this.categories = FXCollections.observableArrayList();
         categories.addAll(msm.getAllCategories());
+        this.catSelecter = new ArrayList<Category>();
+        catSelecter.addAll(msm.getAllCategories());
+        this.filterCat = new ArrayList<Category>();
+        this.activeFilterCat = FXCollections.observableArrayList();
+        activeFilterCat.addAll(getCatFilter());
     }
 
     public ObservableList<Category> getCategories()
     {
         return categories;
+    }
+
+    public ObservableList<Category> getActiveCatFilter()
+    {
+        return activeFilterCat;
+    }
+
+    public Category addCatToFilter(Category category)
+    {
+        filterCat.add(category);
+        activeFilterCat.add(category);
+        return category;
+    }
+
+    public ArrayList<Category> getCatFilter()
+    {
+        return filterCat;
+    }
+
+    public ArrayList<Category> getCatSelect()
+    {
+        return catSelecter;
     }
 
     public void createCategory(String name)
@@ -59,13 +90,12 @@ public class MovSysModel
     {
         this.selectedCategory = selectedCategory;
     }
-    
+
     public ObservableList<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
     {
         movies.clear();
         movies.addAll(msm.getAllMoviesInACategory(categoryId));
         return movies;
     }
-
 
 }

@@ -16,7 +16,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -40,12 +42,20 @@ public class FXMLDocumentController implements Initializable
     private MovSysModel msmodel;
     @FXML
     private TextField txtfilter;
+    @FXML
+    private ComboBox<Category> cmbCategorySelecter;
+    @FXML
+    private ListView<Category> lstActiveCatFilter;
+    @FXML
+    private Button btnClearFilter;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         this.msmodel = new MovSysModel();
         lstcat.setItems(msmodel.getCategories());
+        cmbCategorySelecter.getItems().addAll(msmodel.getCatSelect());
+        lstActiveCatFilter.setItems(msmodel.getActiveCatFilter());
     }
 
     @FXML
@@ -129,6 +139,21 @@ public class FXMLDocumentController implements Initializable
 
     @FXML
     private void handletxtfilter(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void handleCategorySelect(ActionEvent event)
+    {
+        msmodel.addCatToFilter(cmbCategorySelecter.getSelectionModel().getSelectedItem());
+        for (Category cat : msmodel.getCatFilter())
+        {
+            System.out.println(""+cat.getCategoryName());
+        }
+    }
+
+    @FXML
+    private void handleClearFilterButton(ActionEvent event)
     {
     }
 }
