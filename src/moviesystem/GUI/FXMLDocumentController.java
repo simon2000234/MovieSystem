@@ -8,6 +8,8 @@ package moviesystem.GUI;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -164,6 +166,8 @@ public class FXMLDocumentController implements Initializable
         } else
         {
             msmodel.PlayMovie(msmodel.getLastClickedMovie());
+            String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+            msmodel.setLastView(msmodel.getLastClickedMovie().getId(), timeStamp);
         }
     }
 

@@ -16,10 +16,10 @@ public class Movie
     private String name;
     private double rating;
     private String filePath;
-    private int lastview;
+    private String lastview;
     private double pRating;
 
-    public Movie(int id, String name, double rating, String filePath, int lastview, double pRating)
+    public Movie(int id, String name, double rating, String filePath, String lastview, double pRating)
     {
         this.id=id;
         this.name=name;
@@ -70,12 +70,12 @@ public class Movie
         this.filePath = filePath;
     }
 
-    public int getLastview()
+    public String getLastview()
     {
         return lastview;
     }
 
-    public void setLastview(int lastview)
+    public void setLastview(String lastview)
     {
         this.lastview = lastview;
     }

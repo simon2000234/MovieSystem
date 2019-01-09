@@ -46,9 +46,9 @@ public class MovSysManager
         movDAO.setPRateMovie(movieId, rating);
     }
 
-    public void setLastView(int movieId, int daysSinceLastWatched) throws SQLException
+    public void setLastView(int movieId, String dayWatched) throws SQLException
     {
-        movDAO.setLastView(movieId, daysSinceLastWatched);
+        movDAO.setLastView(movieId, dayWatched);
     }
 
     public Category createCategory(String name)

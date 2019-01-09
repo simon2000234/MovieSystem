@@ -126,5 +126,15 @@ public class MovSysModel
         this.lastClickedMovie = lastClickedMovie;
     }
     
+    public void setLastView(int movieId, String dayWatched)
+    {
+        try
+        {
+            msm.setLastView(movieId, dayWatched);
+        } catch (SQLException ex)
+        {
+            //yolo
+        }
+    }
 
 }
