@@ -7,7 +7,10 @@ package moviesystem.GUI;
 
 import static java.lang.Integer.parseInt;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import moviesystem.BE.Category;
 import moviesystem.BLL.MovSysManager;
 
@@ -29,16 +33,17 @@ public class AddMovieController implements Initializable
 
     private MovSysModel msmodel;
     private MovSysModel movieModel;
-    
+    private MovSysManager movSysManager;
+    private String filepath;
     
     @FXML
     private TextField txtMovieName;
     @FXML
     private TextField txtRating;
     @FXML
-    private Button FilePickerBtn;
-    @FXML
     private ListView<Category> lstCategory;
+    @FXML
+    private Button BtnFilePicker;
 
     /**
      * Initializes the controller class.
@@ -63,12 +68,24 @@ public class AddMovieController implements Initializable
     @FXML
     private void handleAddMovie(ActionEvent event)
     {
-
+        try
+        {
+            movSysManager.createMovie(txtMovieName.getText(), Integer.parseInt(txtRating.getText()), filepath ,msmodel.getSelectedCategory().getCategoryId());
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(AddMovieController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     private void handleChanelMovie(ActionEvent event)
     {
+    }
+
+    @FXML
+    private void BtnGetCategory(ActionEvent event)
+    {
+         lstCategory.setItems(msmodel.getCategories());
     }
  
 }
