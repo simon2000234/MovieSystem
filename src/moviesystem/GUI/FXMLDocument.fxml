@@ -14,18 +14,17 @@
       <Button layoutX="400.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleaddmovie" text="Add Movie" />
       <Button layoutX="500.0" layoutY="575.0" mnemonicParsing="false" onAction="#handledeletemovie" text="Delete" />
       <Button layoutX="583.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleratemovie" text="Rate" />
-      <Button layoutX="14.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleaddcat" text="Add Category" />
-      <Button layoutX="123.0" layoutY="575.0" mnemonicParsing="false" onAction="#handledeletecat" text="Delete" />
-      <TextField fx:id="txtfilter" layoutX="772.0" layoutY="25.0" onAction="#handletxtfilter" />
-      <Label layoutX="847.0" layoutY="6.0" text="filter" />
-      <ComboBox fx:id="cmbCategorySelecter" layoutX="765.0" layoutY="308.0" onAction="#handleCategorySelect" prefWidth="150.0" />
-      <ListView fx:id="lstActiveCatFilter" layoutX="764.0" layoutY="341.0" prefHeight="176.0" prefWidth="150.0" />
-      <Button fx:id="btnClearFilter" layoutX="803.0" layoutY="525.0" mnemonicParsing="false" onAction="#handleClearFilterButton" text="Clear Filter" />
+      <Button layoutX="14.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleaddcat" text="Add" />
+      <Button layoutX="84.0" layoutY="575.0" mnemonicParsing="false" onAction="#handledeletecat" text="Delete" />
+      <TextField fx:id="txtfilter" layoutX="764.0" layoutY="41.0" onAction="#handletxtfilter" promptText="Search title..." />
+      <ComboBox fx:id="cmbCategorySelecter" layoutX="763.0" layoutY="194.0" onAction="#handleCategorySelect" prefWidth="150.0" />
+      <ListView fx:id="lstActiveCatFilter" layoutX="762.0" layoutY="227.0" prefHeight="176.0" prefWidth="150.0" />
+      <Button fx:id="btnClearFilter" layoutX="801.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleClearFilterButton" text="Clear Filter" />
       <Button layoutX="660.0" layoutY="575.0" mnemonicParsing="false" onAction="#handlePlayMovie" text="Play" />
-      <TextField fx:id="txtRatingIMDB" layoutX="803.0" layoutY="207.0" prefHeight="25.0" prefWidth="73.0" />
-      <TextField fx:id="txtPersonalRating" layoutX="803.0" layoutY="258.0" prefHeight="25.0" prefWidth="73.0" />
-      <Label layoutX="809.0" layoutY="190.0" text="Min. Rating" />
-      <Label layoutX="786.0" layoutY="241.0" text="Min. Personal Rating" />
-      <Button layoutX="297.0" layoutY="620.0" mnemonicParsing="false" onAction="#handleAddMov2Cat" text="Add a Movie to a Category" />
+      <TextField fx:id="txtRatingIMDB" layoutX="801.0" layoutY="93.0" onAction="#handleMinRatingtxt" prefHeight="25.0" prefWidth="73.0" />
+      <TextField fx:id="txtPersonalRating" layoutX="801.0" layoutY="144.0" onAction="#handleMinPersonalRatingtxt" prefHeight="25.0" prefWidth="73.0" />
+      <Label layoutX="807.0" layoutY="76.0" text="Min. Rating" />
+      <Label layoutX="784.0" layoutY="127.0" text="Min. Personal Rating" />
+      <Button fx:id="btnSearch" layoutX="811.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearchButton" text="Search" />
    </children>
 </AnchorPane>

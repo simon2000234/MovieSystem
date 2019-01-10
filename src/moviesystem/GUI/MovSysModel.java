@@ -10,13 +10,14 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import moviesystem.BE.Category;
 import moviesystem.BE.Movie;
+import moviesystem.BE.SearchObject;
 import moviesystem.BLL.MovSysManager;
 
 /**
@@ -158,10 +159,49 @@ public class MovSysModel
         }
     }
 
+    public SearchObject search(String searchString, double imdbRating, double personalRating, ArrayList<Category> chosenCategories)
+    {
+        SearchObject FilterSearch;
+        FilterSearch = new SearchObject(searchString, imdbRating, personalRating, chosenCategories);
+        return FilterSearch;
+    }
+
+    public ObservableList<Movie> getSearch(SearchObject search)
+    {
+        ObservableList<Movie> theSearch;
+        theSearch = FXCollections.observableArrayList();
+        try
+        {
+            theSearch.addAll(msm.searchMovies(search));
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MovSysModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return theSearch;
+        
+    }
     public void addMovieToCat(int movieId, int catId) throws SQLException
     {
         msm.addMovieToCat(movieId, catId);
     }
+
+
+    public String pickFile()
+    {
+        return msm.pickFile();
+    }
+
+    public void createMovie(String name, double rating, String filePath)
+    {
+        try
+        {
+            msm.createMovie(name, rating, filePath);
+        } catch (SQLException ex)
+        {
+            //dab dab
+        }
+    }
+
 
 
 }

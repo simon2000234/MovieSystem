@@ -5,13 +5,15 @@
  */
 package moviesystem.BLL;
 
-import java.io.File;
+import java.math.BigDecimal;
+
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import moviesystem.BE.Category;
 import moviesystem.BE.Movie;
+import moviesystem.BE.SearchObject;
 import moviesystem.DAL.CategoryDAO;
 import moviesystem.DAL.MovieDAO;
 import moviesystem.DAL.mp4toDB;
@@ -32,6 +34,7 @@ public class MovSysManager
     {
         catDAO = new CategoryDAO();
         movDAO = new MovieDAO();
+        mp4 = new mp4toDB();
     }
 
     public void createMovie(String name, double rating, String filePath) throws SQLException
@@ -76,15 +79,47 @@ public class MovSysManager
         return movDAO.getAllMoviesInACategory(categoryId);
     }
 
-
-    public String getFileName()
+    public List<Movie> searchMovies(SearchObject searchObject) throws SQLException
     {
-        mp4 = new mp4toDB();
-        String fileName = mp4.pickFile();
+        List<Movie> temp = new ArrayList<Movie>();
+        List<Movie> theSearch = new ArrayList<Movie>();
+        List<Integer> idCheck = new ArrayList<Integer>();
 
-        return fileName;
+        for (Category selectedCategory : searchObject.getSelectedCategories())
+        {
+            temp.addAll(movDAO.getAllMoviesInACategory(selectedCategory.getCategoryId()));
+        }
+
+        double minImdb = searchObject.getMinImdbRating();
+        BigDecimal minImdbRating = new BigDecimal(searchObject.getMinImdbRating());
+        BigDecimal minPersonalRating = new BigDecimal(searchObject.getMinPersonalRating());
+
+        for (Movie movie : temp)
+        {
+            BigDecimal movieRating = new BigDecimal(movie.getRating());
+            BigDecimal moviePrating = new BigDecimal(movie.getpRating());
+            if (movie.getName().toLowerCase().contains(searchObject.getSearchString().toLowerCase())
+                    && idCheck.contains(movie.getId()) != true
+                    && minImdbRating.compareTo(movieRating) <= 0
+                    && minPersonalRating.compareTo(moviePrating) <= 0)
+            {
+                theSearch.add(movie);
+                idCheck.add(movie.getId());
+            } else
+            {
+                //nothing
+            }
+        }
+        return theSearch;
+    }
+
+    public String pickFile()
+
+    {
+        return mp4.pickFile();
 
     }
+
     public void addMovieToCat(int movieId, int catId) throws SQLException
     {
         movDAO.addMovieToCat(movieId, catId);

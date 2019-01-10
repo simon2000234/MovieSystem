@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -56,6 +57,8 @@ public class FXMLDocumentController implements Initializable
     private TextField txtRatingIMDB;
     @FXML
     private TextField txtPersonalRating;
+    @FXML
+    private Button btnSearch;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -185,6 +188,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handletxtfilter(ActionEvent event)
     {
+        fixSearch();
     }
 
     @FXML
@@ -216,7 +220,18 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleClearFilterButton(ActionEvent event)
     {
-        msmodel.clearFilter();
+        try
+        {
+            msmodel.clearFilter();
+            txtRatingIMDB.setText("");
+            txtPersonalRating.setText("");
+            txtfilter.setText("");
+            lstmovie.setItems(msmodel.getAllMoviesInACategory(1018));
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @FXML
@@ -227,6 +242,60 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    private void handleMinRatingtxt(ActionEvent event)
+    {
+        fixSearch();
+    }
+
+    @FXML
+    private void handleMinPersonalRatingtxt(ActionEvent event)
+    {
+        fixSearch();
+    }
+
+    @FXML
+    private void handleSearchButton(ActionEvent event)
+    {
+        fixSearch();
+    }
+
+    public void fixSearch()
+    {
+        String searchText;
+        double minImdb;
+        double minPersonal;
+        ArrayList<Category> catFilter = new ArrayList<Category>();
+        if (txtfilter.getText().isEmpty())
+        {
+            searchText = "";
+        } else
+        {
+            searchText = txtfilter.getText();
+        }
+        if (txtRatingIMDB.getText().isEmpty())
+        {
+            minImdb = 0.0;
+        } else
+        {
+            minImdb = Double.parseDouble(txtRatingIMDB.getText());
+        }
+        if (txtPersonalRating.getText().isEmpty())
+        {
+            minPersonal = 0.0;
+        } else
+        {
+            minPersonal = Double.parseDouble(txtPersonalRating.getText());
+        }
+        if (msmodel.getCatFilter().isEmpty())
+        {
+            catFilter.addAll(msmodel.getCategories());
+        } else
+        {
+            catFilter.addAll(msmodel.getCatFilter());
+        }
+        lstmovie.setItems(msmodel.getSearch(msmodel.search(searchText, minImdb, minPersonal, catFilter)));
+    }
+
     private void handleAddMov2Cat(ActionEvent event)
     {
         Parent root;

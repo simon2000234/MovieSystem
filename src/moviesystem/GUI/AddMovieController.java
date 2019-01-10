@@ -23,6 +23,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import moviesystem.BE.Category;
 import moviesystem.BLL.MovSysManager;
+import moviesystem.DAL.mp4toDB;
 
 /**
  * FXML Controller class
@@ -70,13 +71,9 @@ public class AddMovieController implements Initializable
     @FXML
     private void handleAddMovie(ActionEvent event)
     {
-        try
         {
-            movSysManager.createMovie(txtMovieName.getText(), Integer.parseInt(txtRating.getText()), filepath);
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(AddMovieController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            msmodel.createMovie(txtMovieName.getText(), Double.parseDouble(txtRating.getText()), txtFilePath.getText());
+        } 
     }
 
     @FXML
@@ -89,8 +86,9 @@ public class AddMovieController implements Initializable
     @FXML
     private void handleChooseFile(ActionEvent event)
     {
-        String nameOfFile;
-      nameOfFile = movSysManager.getFileName();
-      txtFilePath.setText(nameOfFile);
+        
+        
+      this.filepath = msmodel.pickFile();
+     txtFilePath.setText(this.filepath);
     }
 }
