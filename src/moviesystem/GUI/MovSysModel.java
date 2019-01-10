@@ -32,6 +32,7 @@ public class MovSysModel
     private ObservableList<Category> categories;
 
     private Category selectedCategory;
+    private Movie selectedMovie;
     private ArrayList<Category> catSelecter;
     private ArrayList<Category> filterCat;
     private ObservableList<Category> activeFilterCat;
@@ -103,6 +104,7 @@ public class MovSysModel
     {
         return selectedCategory;
     }
+    
 
     public void setSelectedCategory(Category selectedCategory)
     {
@@ -201,7 +203,26 @@ public class MovSysModel
             //dab dab
         }
     }
-
+    
+    public void deleteMovie(int movieId)
+    {
+        try
+        {
+            msm.deleteMovie(movieId);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MovSysModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+ public Movie getSelectedMovie()
+    {
+        return selectedMovie;
+    }
+ 
+ public void setSelectedCategory(Movie selectedMovie)
+    {
+        this.selectedMovie = selectedMovie;
+    }
 
 
 }

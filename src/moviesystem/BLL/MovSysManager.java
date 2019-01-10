@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.media.MediaPlayer;
 import moviesystem.BE.Category;
 import moviesystem.BE.Movie;
@@ -119,6 +121,7 @@ public class MovSysManager
         return mp4.pickFile();
 
     }
+    
 
     public void addMovieToCat(int movieId, int catId) throws SQLException
     {
