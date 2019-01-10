@@ -54,8 +54,7 @@ public class AddMovieController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        movieModel = new MovSysModel();
-       lstCategory.setItems(movieModel.getCategories());
+      
 
     }
 
