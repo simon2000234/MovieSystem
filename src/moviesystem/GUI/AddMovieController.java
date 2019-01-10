@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import moviesystem.BE.Category;
 import moviesystem.BLL.MovSysManager;
 
@@ -41,10 +42,11 @@ public class AddMovieController implements Initializable
     private TextField txtMovieName;
     @FXML
     private TextField txtRating;
-    @FXML
     private ListView<Category> lstCategory;
     @FXML
     private Button BtnFilePicker;
+    @FXML
+    private TextField txtFilePath;
 
     /**
      * Initializes the controller class.
@@ -82,5 +84,7 @@ public class AddMovieController implements Initializable
     @FXML
     private void handleChanelMovie(ActionEvent event)
     {
+        Stage stage = (Stage) txtRating.getScene().getWindow();
+        stage.close();
     }
 }
