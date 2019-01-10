@@ -76,6 +76,11 @@ public class CategoryDAO
      */
     public void removeCategory(String name)
     {
+        if (name == "All Movies")
+        {
+            return;
+        }
+        
         String sql = "DELETE FROM Category WHERE name='" + name + "';";
 
         try (Connection con = dbConnect.getConnection())
