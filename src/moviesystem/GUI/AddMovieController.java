@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import moviesystem.BE.Category;
 import moviesystem.BLL.MovSysManager;
 
@@ -35,16 +36,16 @@ public class AddMovieController implements Initializable
     private MovSysModel movieModel;
     private MovSysManager movSysManager;
     private String filepath;
-
  
     @FXML
     private TextField txtMovieName;
     @FXML
     private TextField txtRating;
-    @FXML
     private ListView<Category> lstCategory;
     @FXML
     private Button BtnFilePicker;
+    @FXML
+    private TextField txtFilePath;
 
     /**
      * Initializes the controller class.
@@ -52,8 +53,7 @@ public class AddMovieController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        movieModel = new MovSysModel();
-       lstCategory.setItems(movieModel.getCategories());
+      
 
     }
 
@@ -72,7 +72,7 @@ public class AddMovieController implements Initializable
     {
         try
         {
-            movSysManager.createMovie(txtMovieName.getText(), Integer.parseInt(txtRating.getText()), filepath ,msmodel.getSelectedCategory().getCategoryId());
+            movSysManager.createMovie(txtMovieName.getText(), Integer.parseInt(txtRating.getText()), filepath);
         } catch (SQLException ex)
         {
             Logger.getLogger(AddMovieController.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,5 +82,15 @@ public class AddMovieController implements Initializable
     @FXML
     private void handleChanelMovie(ActionEvent event)
     {
+        Stage stage = (Stage) txtRating.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void handleChooseFile(ActionEvent event)
+    {
+        String nameOfFile;
+      nameOfFile = movSysManager.getFileName();
+      txtFilePath.setText(nameOfFile);
     }
 }

@@ -11,8 +11,8 @@
    <children>
       <ListView fx:id="lstcat" onMouseClicked="#handleClickOnCategory" prefHeight="566.0" prefWidth="376.0" />
       <ListView fx:id="lstmovie" layoutX="376.0" onMouseClicked="#handleClickOnMovie" prefHeight="566.0" prefWidth="376.0" />
-      <Button layoutX="400.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleaddmovie" text="Add" />
-      <Button layoutX="481.0" layoutY="575.0" mnemonicParsing="false" onAction="#handledeletemovie" text="Delete" />
+      <Button layoutX="400.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleaddmovie" text="Add Movie" />
+      <Button layoutX="500.0" layoutY="575.0" mnemonicParsing="false" onAction="#handledeletemovie" text="Delete" />
       <Button layoutX="583.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleratemovie" text="Rate" />
       <Button layoutX="14.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleaddcat" text="Add" />
       <Button layoutX="84.0" layoutY="575.0" mnemonicParsing="false" onAction="#handledeletecat" text="Delete" />

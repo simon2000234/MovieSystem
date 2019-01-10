@@ -28,14 +28,14 @@ public class MovieDAO
         dbConnect = new DBConnectionProvider();
     }
 
-    public void createMovie(String name, double rating, String filePath, int categoryId) throws SQLException
+    public void createMovie(String name, double rating, String filePath) throws SQLException
     {
-        if (rating < 0.0 || rating >10.0)
+        if (rating < 0.0 || rating > 10.0)
         {
             System.out.println("kun 0.0 til 10.0 dit fjols");
             return;
         }
-        
+
         String sql = "INSERT INTO Movie(name, rating, filePath) VALUES (?,?,?);";
         String sql2 = "INSERT INTO CatMov(CategoryId, MovieId) VALUES (?,?);";
         try (Connection con = dbConnect.getConnection())
@@ -53,9 +53,21 @@ public class MovieDAO
                 movId = rs.getInt(1);
             }
             PreparedStatement st2 = con.prepareStatement(sql2);
-            st2.setInt(1, categoryId);
+            st2.setInt(1, 1018);
             st2.setInt(2, movId);
             st2.executeUpdate();
+        }
+    }
+
+    public void addMovieToCat(int movieId, int catId) throws SQLException
+    {
+        String sql = "INSERT INTO CatMov(CategoryId, MovieId) VALUES (?,?);";
+         try (Connection con = dbConnect.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, catId);
+            st.setInt(2, movieId);
+            st.executeUpdate();
         }
     }
 

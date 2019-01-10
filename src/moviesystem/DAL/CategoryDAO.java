@@ -76,6 +76,11 @@ public class CategoryDAO
      */
     public void removeCategory(String name)
     {
+        if (name == "All Movies")
+        {
+            return;
+        }
+        
         String sql = "DELETE FROM Category WHERE name='" + name + "';";
 
         try (Connection con = dbConnect.getConnection())
@@ -110,7 +115,10 @@ public class CategoryDAO
             {
                 int id = rs.getInt("id");
                 String name = rs.getNString("name");
-                allCategories.add(new Category(id, name));
+                if (id != 1018) //1018 er en hemelig category hvor alle film er i
+                {
+                    allCategories.add(new Category(id, name));
+                }
 
             }
         } catch (SQLException ex)

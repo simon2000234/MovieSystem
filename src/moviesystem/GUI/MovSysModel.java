@@ -91,6 +91,10 @@ public class MovSysModel
 
     public void deleteCategory(Category category)
     {
+        if (category.getCategoryId() == 1018)
+        {
+            return;
+        }
         categories.remove(category);
         msm.removeCategory(category.getCategoryName());
     }
@@ -176,5 +180,8 @@ public class MovSysModel
         return theSearch;
         
     }
-
+    public void addMovieToCat(int movieId, int catId) throws SQLException
+    {
+        msm.addMovieToCat(movieId, catId);
+    }
 }

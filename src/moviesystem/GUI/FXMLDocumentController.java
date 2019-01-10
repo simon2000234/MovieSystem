@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,6 +67,13 @@ public class FXMLDocumentController implements Initializable
         lstcat.setItems(msmodel.getCategories());
         cmbCategorySelecter.getItems().addAll(msmodel.getCatSelect());
         lstActiveCatFilter.setItems(msmodel.getActiveCatFilter());
+        try
+        {
+            lstmovie.setItems(msmodel.getAllMoviesInACategory(1018));
+        } catch (SQLException ex)
+        {
+            //Jeg er så glad idag
+        }
     }
 
     @FXML
@@ -77,7 +86,7 @@ public class FXMLDocumentController implements Initializable
             root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Add a new Movie");
-            stage.setScene(new Scene(root, 750, 450));
+            stage.setScene(new Scene(root, 450, 450));
             stage.show();
 
             AddMovieController AddMovieController = loader.getController();
@@ -166,8 +175,14 @@ public class FXMLDocumentController implements Initializable
     {
         Category currentcat = lstcat.getSelectionModel().getSelectedItem();
         msmodel.setSelectedCategory(currentcat);
-        System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
-        lstmovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
+        if (currentcat == null)
+        {
+            lstmovie.setItems(msmodel.getAllMoviesInACategory(1018));
+        } else
+        {
+            System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
+            lstmovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
+        }
     }
 
     @FXML
@@ -277,4 +292,24 @@ public class FXMLDocumentController implements Initializable
         lstmovie.setItems(msmodel.getSearch(msmodel.search(searchText, minImdb, minPersonal, catFilter)));
     }
 
+    private void handleAddMov2Cat(ActionEvent event)
+    {
+        Parent root;
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("moviesystem/GUI/AddMov2Cat.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Add a Movie to a Category");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+
+            AddMov2CatController am2cc = loader.getController();
+            am2cc.setMsmodel(msmodel);
+
+        } catch (IOException ex)
+        {
+            //something
+        }
+    }
 }
