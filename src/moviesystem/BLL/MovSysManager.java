@@ -31,9 +31,9 @@ public class MovSysManager
         movDAO = new MovieDAO();
     }
 
-    public void createMovie(String name, double rating, String filePath, int categoryId) throws SQLException
+    public void createMovie(String name, double rating, String filePath) throws SQLException
     {
-        movDAO.createMovie(name, rating, filePath, categoryId);
+        movDAO.createMovie(name, rating, filePath);
     }
 
     public void deleteMovie(int movieId) throws SQLException

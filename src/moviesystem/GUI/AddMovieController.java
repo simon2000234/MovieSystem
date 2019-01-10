@@ -74,7 +74,7 @@ public class AddMovieController implements Initializable
     {
         try
         {
-            movSysManager.createMovie(txtMovieName.getText(), Integer.parseInt(txtRating.getText()), filepath ,msmodel.getSelectedCategory().getCategoryId());
+            movSysManager.createMovie(txtMovieName.getText(), Integer.parseInt(txtRating.getText()), filepath);
         } catch (SQLException ex)
         {
             Logger.getLogger(AddMovieController.class.getName()).log(Level.SEVERE, null, ex);
