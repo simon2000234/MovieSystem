@@ -21,6 +21,7 @@ import moviesystem.DAL.MovieDAO;
  */
 public class MovSysManager
 {
+
     private MediaPlayer mediaPlayer;
     private CategoryDAO catDAO;
     private MovieDAO movDAO;
@@ -71,5 +72,10 @@ public class MovSysManager
     public List<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
     {
         return movDAO.getAllMoviesInACategory(categoryId);
+    }
+
+    public void addMovieToCat(int movieId, int catId) throws SQLException
+    {
+        movDAO.addMovieToCat(movieId, catId);
     }
 }

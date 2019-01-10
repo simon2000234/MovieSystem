@@ -158,5 +158,10 @@ public class MovSysModel
         }
     }
 
+    public void addMovieToCat(int movieId, int catId) throws SQLException
+    {
+        msm.addMovieToCat(movieId, catId);
+    }
+
 
 }
