@@ -17,6 +17,19 @@
             <file>file:/C:/Users/Melchertsen/Documents/GitHub/MovieSystem/src/moviesystem/GUI/MovSysModel.java</file>
             <file>file:/C:/Users/Melchertsen/Documents/GitHub/MovieSystem/src/moviesystem/GUI/FXMLDocumentController.java</file>
             <file>file:/C:/Users/Melchertsen/Documents/GitHub/MovieSystem/src/moviesystem/DAL/CategoryDAO.java</file>
+
+            <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/GUI/MovSysModel.java</file>
+            <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/BLL/MovSysManager.java</file>
+            <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/GUI/addMovie.fxml</file>
+            <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/GUI/FXMLDocumentController.java</file>
+            <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/GUI/AddMovieController.java</file>
+            <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/GUI/AddCategoryWindowController.java</file>
+            <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/DAL/FileTester.java</file>
+            <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/DAL/MovieDAO.java</file>
+
+            <file>file:/C:/Users/Richart/Documents/GitHub/MovieSystem/src/moviesystem/DAL/DBConnectionProvider.java</file>
+            <file>file:/C:/Users/Richart/Documents/GitHub/MovieSystem/src/moviesystem/DAL/FileTester.java</file>
+
         </group>
     </open-files>
 </project-private>
