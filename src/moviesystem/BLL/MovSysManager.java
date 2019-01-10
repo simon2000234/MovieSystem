@@ -6,6 +6,7 @@
 package moviesystem.BLL;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.scene.media.Media;
@@ -32,6 +33,7 @@ public class MovSysManager
     {
         catDAO = new CategoryDAO();
         movDAO = new MovieDAO();
+        mp4 = new mp4toDB();
     }
 
     public void createMovie(String name, double rating, String filePath) throws SQLException
@@ -76,15 +78,12 @@ public class MovSysManager
         return movDAO.getAllMoviesInACategory(categoryId);
     }
 
-
-    public String getFileName()
+    public String pickFile()
     {
-        mp4 = new mp4toDB();
-        String fileName = mp4.pickFile();
-
-        return fileName;
+        return mp4.pickFile();
 
     }
+
     public void addMovieToCat(int movieId, int catId) throws SQLException
     {
         movDAO.addMovieToCat(movieId, catId);

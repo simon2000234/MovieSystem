@@ -15,7 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.stage.FileChooser;
-import javafx.stage.Window;
+import javafx.stage.Stage;
+
 import moviesystem.BE.Movie;
 
 /**
@@ -28,18 +29,21 @@ public class mp4toDB
     private DBConnectionProvider dbConnect;
     private String fileName;
     private String file;
+    
 
     public mp4toDB()
     {
         dbConnect = new DBConnectionProvider();
     }
     
-    public String pickFile() throws UnsupportedOperationException{
+    public String pickFile(){
         FileChooser fileChooser;
         fileChooser = new FileChooser();
         file = fileChooser.showOpenDialog(null).getAbsoluteFile().getPath();
         fileName= file;
     return fileName;
     }
-
-}
+    
+    
+        
+    }

@@ -163,5 +163,20 @@ public class MovSysModel
         msm.addMovieToCat(movieId, catId);
     }
 
+    public String pickFile()
+    {
+        return msm.pickFile();
+    }
+
+    public void createMovie(String name, double rating, String filePath)
+    {
+        try
+        {
+            msm.createMovie(name, rating, filePath);
+        } catch (SQLException ex)
+        {
+            //dab dab
+        }
+    }
 
 }
