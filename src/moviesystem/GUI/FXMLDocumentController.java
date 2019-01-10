@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,6 +64,13 @@ public class FXMLDocumentController implements Initializable
         lstcat.setItems(msmodel.getCategories());
         cmbCategorySelecter.getItems().addAll(msmodel.getCatSelect());
         lstActiveCatFilter.setItems(msmodel.getActiveCatFilter());
+        try
+        {
+            lstmovie.setItems(msmodel.getAllMoviesInACategory(1018));
+        } catch (SQLException ex)
+        {
+            //Jeg er så glad idag
+        }
     }
 
     @FXML
@@ -163,8 +172,14 @@ public class FXMLDocumentController implements Initializable
     {
         Category currentcat = lstcat.getSelectionModel().getSelectedItem();
         msmodel.setSelectedCategory(currentcat);
-        System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
-        lstmovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
+        if (currentcat == null)
+        {
+            lstmovie.setItems(msmodel.getAllMoviesInACategory(1018));
+        } else
+        {
+            System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
+            lstmovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
+        }
     }
 
     @FXML
