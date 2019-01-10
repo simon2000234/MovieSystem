@@ -5,12 +5,11 @@
  */
 package moviesystem.BLL;
 
-import java.io.File;
 import java.math.BigDecimal;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import moviesystem.BE.Category;
 import moviesystem.BE.Movie;
@@ -35,6 +34,7 @@ public class MovSysManager
     {
         catDAO = new CategoryDAO();
         movDAO = new MovieDAO();
+        mp4 = new mp4toDB();
     }
 
     public void createMovie(String name, double rating, String filePath) throws SQLException
@@ -89,11 +89,10 @@ public class MovSysManager
         {
             temp.addAll(movDAO.getAllMoviesInACategory(selectedCategory.getCategoryId()));
         }
-        
+
         double minImdb = searchObject.getMinImdbRating();
         BigDecimal minImdbRating = new BigDecimal(searchObject.getMinImdbRating());
         BigDecimal minPersonalRating = new BigDecimal(searchObject.getMinPersonalRating());
-        
 
         for (Movie movie : temp)
         {
@@ -106,8 +105,7 @@ public class MovSysManager
             {
                 theSearch.add(movie);
                 idCheck.add(movie.getId());
-            }
-            else
+            } else
             {
                 //nothing
             }
@@ -115,15 +113,13 @@ public class MovSysManager
         return theSearch;
     }
 
+    public String pickFile()
 
-    public String getFileName()
     {
-        mp4 = new mp4toDB();
-        String fileName = mp4.pickFile();
-
-        return fileName;
+        return mp4.pickFile();
 
     }
+
     public void addMovieToCat(int movieId, int catId) throws SQLException
     {
         movDAO.addMovieToCat(movieId, catId);

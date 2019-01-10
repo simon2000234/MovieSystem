@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -184,4 +184,24 @@ public class MovSysModel
     {
         msm.addMovieToCat(movieId, catId);
     }
+
+
+    public String pickFile()
+    {
+        return msm.pickFile();
+    }
+
+    public void createMovie(String name, double rating, String filePath)
+    {
+        try
+        {
+            msm.createMovie(name, rating, filePath);
+        } catch (SQLException ex)
+        {
+            //dab dab
+        }
+    }
+
+
+
 }
