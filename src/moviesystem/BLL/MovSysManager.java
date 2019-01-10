@@ -34,9 +34,9 @@ public class MovSysManager
         movDAO = new MovieDAO();
     }
 
-    public void createMovie(String name, double rating, String filePath, int categoryId) throws SQLException
+    public void createMovie(String name, double rating, String filePath) throws SQLException
     {
-        movDAO.createMovie(name, rating, filePath, categoryId);
+        movDAO.createMovie(name, rating, filePath);
     }
 
     public void deleteMovie(int movieId) throws SQLException
@@ -76,12 +76,18 @@ public class MovSysManager
         return movDAO.getAllMoviesInACategory(categoryId);
     }
 
+
     public String getFileName()
     {
         mp4 = new mp4toDB();
         String fileName = mp4.pickFile();
 
         return fileName;
+
+    }
+    public void addMovieToCat(int movieId, int catId) throws SQLException
+    {
+        movDAO.addMovieToCat(movieId, catId);
 
     }
 }

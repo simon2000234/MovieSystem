@@ -11,11 +11,11 @@
    <children>
       <ListView fx:id="lstcat" onMouseClicked="#handleClickOnCategory" prefHeight="566.0" prefWidth="376.0" />
       <ListView fx:id="lstmovie" layoutX="376.0" onMouseClicked="#handleClickOnMovie" prefHeight="566.0" prefWidth="376.0" />
-      <Button layoutX="400.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleaddmovie" text="Add" />
-      <Button layoutX="481.0" layoutY="575.0" mnemonicParsing="false" onAction="#handledeletemovie" text="Delete" />
+      <Button layoutX="400.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleaddmovie" text="Add Movie" />
+      <Button layoutX="500.0" layoutY="575.0" mnemonicParsing="false" onAction="#handledeletemovie" text="Delete" />
       <Button layoutX="583.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleratemovie" text="Rate" />
-      <Button layoutX="14.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleaddcat" text="Add" />
-      <Button layoutX="84.0" layoutY="575.0" mnemonicParsing="false" onAction="#handledeletecat" text="Delete" />
+      <Button layoutX="14.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleaddcat" text="Add Category" />
+      <Button layoutX="123.0" layoutY="575.0" mnemonicParsing="false" onAction="#handledeletecat" text="Delete" />
       <TextField fx:id="txtfilter" layoutX="772.0" layoutY="25.0" onAction="#handletxtfilter" />
       <Label layoutX="847.0" layoutY="6.0" text="filter" />
       <ComboBox fx:id="cmbCategorySelecter" layoutX="765.0" layoutY="308.0" onAction="#handleCategorySelect" prefWidth="150.0" />
@@ -26,5 +26,6 @@
       <TextField fx:id="txtPersonalRating" layoutX="803.0" layoutY="258.0" prefHeight="25.0" prefWidth="73.0" />
       <Label layoutX="809.0" layoutY="190.0" text="Min. Rating" />
       <Label layoutX="786.0" layoutY="241.0" text="Min. Personal Rating" />
+      <Button layoutX="297.0" layoutY="620.0" mnemonicParsing="false" onAction="#handleAddMov2Cat" text="Add a Movie to a Category" />
    </children>
 </AnchorPane>

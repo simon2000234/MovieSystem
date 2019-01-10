@@ -210,4 +210,26 @@ public class FXMLDocumentController implements Initializable
         Movie lastClickedMovie = lstmovie.getSelectionModel().getSelectedItem();
         msmodel.setLastClickedMovie(lastClickedMovie);
     }
+
+    @FXML
+    private void handleAddMov2Cat(ActionEvent event)
+    {
+        Parent root;
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("moviesystem/GUI/AddMov2Cat.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Add a Movie to a Category");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+
+            AddMov2CatController am2cc = loader.getController();
+            am2cc.setMsmodel(msmodel);
+
+        } catch (IOException ex)
+        {
+            //something
+        }
+    }
 }
