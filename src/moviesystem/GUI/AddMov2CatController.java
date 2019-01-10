@@ -69,7 +69,7 @@ public class AddMov2CatController implements Initializable
             txtHidden.setText("You need to chose a category and a movie");
             return;
         }
-        ObservableList<Movie> theList = msmodel.getAllMoviesInACategory(1018);
+        ObservableList<Movie> theList = msmodel.getAllMoviesInACategory(selectedCategory.getCategoryId());
         isMovieInCat = false;
         for (Movie movie : theList)
         {
@@ -78,9 +78,9 @@ public class AddMov2CatController implements Initializable
                 isMovieInCat = true;
             }
         }
-        if (isMovieInCat = true)
+        if (isMovieInCat == true)
         {
-            txtHidden.setText("The Movie is alreadt in the Category");
+            txtHidden.setText("The Movie is already in the Category");
             return;
         }
         msmodel.addMovieToCat(selectedMovie.getId(), selectedCategory.getCategoryId());
