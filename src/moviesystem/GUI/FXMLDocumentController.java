@@ -188,10 +188,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handletxtfilter(ActionEvent event)
     {
-        lstmovie.setItems(msmodel.getSearch(msmodel.search(txtfilter.getText(),
-                Integer.parseInt(txtRatingIMDB.getText()),
-                Integer.parseInt(txtPersonalRating.getText()),
-                msmodel.getCatFilter())));
+        fixSearch();
     }
 
     @FXML
@@ -223,10 +220,17 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleClearFilterButton(ActionEvent event)
     {
-        msmodel.clearFilter();
-        txtRatingIMDB.setText("");
-        txtPersonalRating.setText("");
-        txtfilter.setText("");
+        try
+        {
+            msmodel.clearFilter();
+            txtRatingIMDB.setText("");
+            txtPersonalRating.setText("");
+            txtfilter.setText("");
+            lstmovie.setItems(msmodel.getAllMoviesInACategory(1018));
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
