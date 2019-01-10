@@ -115,7 +115,10 @@ public class CategoryDAO
             {
                 int id = rs.getInt("id");
                 String name = rs.getNString("name");
-                allCategories.add(new Category(id, name));
+                if (id != 1018) //1018 er en hemelig category hvor alle film er i
+                {
+                    allCategories.add(new Category(id, name));
+                }
 
             }
         } catch (SQLException ex)

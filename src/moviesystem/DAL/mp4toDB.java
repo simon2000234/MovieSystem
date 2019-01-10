@@ -5,19 +5,8 @@
  */
 package moviesystem.DAL;
 
-import com.sun.media.sound.InvalidDataException;
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
-import moviesystem.BE.Movie;
 
 /**
  *

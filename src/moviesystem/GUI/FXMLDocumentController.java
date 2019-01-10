@@ -9,8 +9,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +57,8 @@ public class FXMLDocumentController implements Initializable
     private TextField txtRatingIMDB;
     @FXML
     private TextField txtPersonalRating;
+    @FXML
+    private Button btnSearch;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -62,6 +67,13 @@ public class FXMLDocumentController implements Initializable
         lstcat.setItems(msmodel.getCategories());
         cmbCategorySelecter.getItems().addAll(msmodel.getCatSelect());
         lstActiveCatFilter.setItems(msmodel.getActiveCatFilter());
+        try
+        {
+            lstmovie.setItems(msmodel.getAllMoviesInACategory(1018));
+        } catch (SQLException ex)
+        {
+            //Jeg er så glad idag
+        }
     }
 
     @FXML
@@ -163,13 +175,23 @@ public class FXMLDocumentController implements Initializable
     {
         Category currentcat = lstcat.getSelectionModel().getSelectedItem();
         msmodel.setSelectedCategory(currentcat);
-        System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
-        lstmovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
+        if (currentcat == null)
+        {
+            lstmovie.setItems(msmodel.getAllMoviesInACategory(1018));
+        } else
+        {
+            System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
+            lstmovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
+        }
     }
 
     @FXML
     private void handletxtfilter(ActionEvent event)
     {
+        lstmovie.setItems(msmodel.getSearch(msmodel.search(txtfilter.getText(),
+                Integer.parseInt(txtRatingIMDB.getText()),
+                Integer.parseInt(txtPersonalRating.getText()),
+                msmodel.getCatFilter())));
     }
 
     @FXML
@@ -202,6 +224,10 @@ public class FXMLDocumentController implements Initializable
     private void handleClearFilterButton(ActionEvent event)
     {
         msmodel.clearFilter();
+        txtRatingIMDB.setText("");
+        txtPersonalRating.setText("");
+        txtfilter.setText("");
+        
     }
 
     @FXML
@@ -212,6 +238,60 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    private void handleMinRatingtxt(ActionEvent event)
+    {
+        fixSearch();
+    }
+
+    @FXML
+    private void handleMinPersonalRatingtxt(ActionEvent event)
+    {
+        fixSearch();
+    }
+
+    @FXML
+    private void handleSearchButton(ActionEvent event)
+    {
+        fixSearch();
+    }
+
+    public void fixSearch()
+    {
+        String searchText;
+        double minImdb;
+        double minPersonal;
+        ArrayList<Category> catFilter = new ArrayList<Category>();
+        if (txtfilter.getText().isEmpty())
+        {
+            searchText = "";
+        } else
+        {
+            searchText = txtfilter.getText();
+        }
+        if (txtRatingIMDB.getText().isEmpty())
+        {
+            minImdb = 0.0;
+        } else
+        {
+            minImdb = Double.parseDouble(txtRatingIMDB.getText());
+        }
+        if (txtPersonalRating.getText().isEmpty())
+        {
+            minPersonal = 0.0;
+        } else
+        {
+            minPersonal = Double.parseDouble(txtPersonalRating.getText());
+        }
+        if (msmodel.getCatFilter().isEmpty())
+        {
+            catFilter.addAll(msmodel.getCategories());
+        } else
+        {
+            catFilter.addAll(msmodel.getCatFilter());
+        }
+        lstmovie.setItems(msmodel.getSearch(msmodel.search(searchText, minImdb, minPersonal, catFilter)));
+    }
+
     private void handleAddMov2Cat(ActionEvent event)
     {
         Parent root;
