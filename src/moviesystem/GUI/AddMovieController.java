@@ -36,7 +36,6 @@ public class AddMovieController implements Initializable
     private MovSysModel movieModel;
     private MovSysManager movSysManager;
     private String filepath;
-
  
     @FXML
     private TextField txtMovieName;
@@ -85,5 +84,13 @@ public class AddMovieController implements Initializable
     {
         Stage stage = (Stage) txtRating.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void handleChooseFile(ActionEvent event)
+    {
+        String nameOfFile;
+      nameOfFile = movSysManager.getFileName();
+      txtFilePath.setText(nameOfFile);
     }
 }

@@ -74,7 +74,7 @@ public class FXMLDocumentController implements Initializable
             root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Add a new Movie");
-            stage.setScene(new Scene(root, 750, 450));
+            stage.setScene(new Scene(root, 450, 450));
             stage.show();
 
             AddMovieController AddMovieController = loader.getController();

@@ -14,6 +14,7 @@ import moviesystem.BE.Category;
 import moviesystem.BE.Movie;
 import moviesystem.DAL.CategoryDAO;
 import moviesystem.DAL.MovieDAO;
+import moviesystem.DAL.mp4toDB;
 
 /**
  *
@@ -21,9 +22,11 @@ import moviesystem.DAL.MovieDAO;
  */
 public class MovSysManager
 {
+
     private MediaPlayer mediaPlayer;
     private CategoryDAO catDAO;
     private MovieDAO movDAO;
+    private mp4toDB mp4;
 
     public MovSysManager()
     {
@@ -71,5 +74,14 @@ public class MovSysManager
     public List<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
     {
         return movDAO.getAllMoviesInACategory(categoryId);
+    }
+
+    public String getFileName()
+    {
+        mp4 = new mp4toDB();
+        String fileName = mp4.pickFile();
+
+        return fileName;
+
     }
 }

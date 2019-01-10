@@ -26,6 +26,10 @@ public class FileTester
         CategoryDAO catDAO = new CategoryDAO();
         MovieDAO movieDAO = new MovieDAO();
         MovSysManager msm = new MovSysManager();
+       
+        
+        
+        
         
     }
 }
