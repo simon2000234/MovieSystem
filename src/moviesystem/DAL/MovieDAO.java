@@ -129,12 +129,29 @@ public class MovieDAO
                 double rating = rs.getDouble("rating");
                 String filePath = rs.getString("filePath");
                 String lastview = rs.getString("lastView");
-                double pRating = rs.getInt("personalRating");
+                double pRating = rs.getDouble("personalRating");
                 Movie movie = new Movie(id, name, rating, filePath, lastview, pRating);
                 Movies.add(movie);
             }
             return Movies;
         }
 
+    }
+    
+    public void removieMovieFromCategory(int movieId, int categoryId) throws SQLException
+    {
+        String sql = "DELETE FROM CatMov WHERE MovieId =? AND CategoryId =?";
+        if (categoryId == 1018)
+        {
+            System.out.println("nope");
+            return;
+        }
+        try (Connection con = dbConnect.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, movieId);
+            st.setInt(2, categoryId);
+            st.executeUpdate();
+        }
     }
 }
