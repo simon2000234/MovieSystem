@@ -129,7 +129,7 @@ public class MovieDAO
                 double rating = rs.getDouble("rating");
                 String filePath = rs.getString("filePath");
                 String lastview = rs.getString("lastView");
-                double pRating = rs.getInt("personalRating");
+                double pRating = rs.getDouble("personalRating");
                 Movie movie = new Movie(id, name, rating, filePath, lastview, pRating);
                 Movies.add(movie);
             }

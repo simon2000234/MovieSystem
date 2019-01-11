@@ -48,7 +48,7 @@ public class RateMovieController implements Initializable
         String inputText = txtRating.getText();
         try
         {
-            double inputDouble = Double.parseDouble(inputText);
+            double inputDouble = Double.valueOf(txtRating.getText());
             msmodel.setPRateMovie(msmodel.getLastClickedMovie().getId(), inputDouble);
             Stage stage = (Stage) txtRating.getScene().getWindow();
             stage.close();
