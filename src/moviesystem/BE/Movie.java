@@ -95,6 +95,6 @@ public class Movie
     {
         return "Movie{" + "id=" + id + ", name=" + name + ", rating=" + rating + ", filePath=" + filePath + ", lastview=" + lastview + ", pRating=" + pRating + '}';
     }
-    
+
     
 }
