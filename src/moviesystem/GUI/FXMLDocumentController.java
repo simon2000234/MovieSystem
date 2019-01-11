@@ -69,6 +69,8 @@ public class FXMLDocumentController implements Initializable
     private TableColumn<Movie, Double> columnRating;
     @FXML
     private TableColumn<Movie, Double> columnPersonalRating;
+    @FXML
+    private Label txtHidden;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -114,7 +116,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handledeletemovie(ActionEvent event)
     {
-      //  msmodel.deleteMovie(msmodel.get);
+        //  msmodel.deleteMovie(msmodel.get);
     }
 
     @FXML
@@ -245,7 +247,7 @@ public class FXMLDocumentController implements Initializable
         {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @FXML
@@ -329,6 +331,18 @@ public class FXMLDocumentController implements Initializable
         } catch (IOException ex)
         {
             //something
+        }
+    }
+
+    @FXML
+    private void handelRemoveMovFromCat(ActionEvent event)
+    {
+        if (tableMovie.getSelectionModel().getSelectedItem() == null || lstcat.getSelectionModel().getSelectedItem() == null)
+        {
+            txtHidden.setText("Please select a Category and then a movie to remove it from the category");
+        } else
+        {
+            msmodel.removieMovieFromCategory(tableMovie.getSelectionModel().getSelectedItem().getId(), lstcat.getSelectionModel().getSelectedItem().getCategoryId());
         }
     }
 }
