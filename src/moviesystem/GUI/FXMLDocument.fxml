@@ -30,9 +30,10 @@
       <Button layoutX="302.0" layoutY="620.0" mnemonicParsing="false" onAction="#handleAddMov2Cat" text="Add Movie to a Category" />
       <TableView fx:id="tableMovie" layoutX="376.0" layoutY="-1.0" onMouseClicked="#handleClickOnMovie" prefHeight="566.0" prefWidth="376.0">
         <columns>
-          <TableColumn fx:id="columnTitle" prefWidth="238.0" text="Title" />
-          <TableColumn fx:id="columnRating" minWidth="0.0" prefWidth="42.0" text="Rating" />
-            <TableColumn fx:id="columnPersonalRating" minWidth="0.0" prefWidth="95.0" text="PersonalRating" />
+          <TableColumn fx:id="columnTitle" prefWidth="164.0" text="Title" />
+          <TableColumn fx:id="columnRating" minWidth="0.0" prefWidth="43.0" text="Rating" />
+            <TableColumn fx:id="columnPersonalRating" minWidth="0.0" prefWidth="65.0" text="My Rating" />
+            <TableColumn fx:id="columnLastViewed" prefWidth="103.0" text="Last Viewed" />
         </columns>
       </TableView>
    </children>

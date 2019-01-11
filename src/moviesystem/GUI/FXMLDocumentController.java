@@ -69,6 +69,8 @@ public class FXMLDocumentController implements Initializable
     private TableColumn<Movie, Double> columnRating;
     @FXML
     private TableColumn<Movie, Double> columnPersonalRating;
+    @FXML
+    private TableColumn<?, ?> columnLastViewed;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -80,6 +82,8 @@ public class FXMLDocumentController implements Initializable
         columnTitle.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
         columnPersonalRating.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().getpRating()));
+//        columnCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        columnLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastview"));
         try
         {
             tableMovie.setItems(msmodel.getAllMoviesInACategory(1018));
