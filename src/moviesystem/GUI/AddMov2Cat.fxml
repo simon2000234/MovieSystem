@@ -5,11 +5,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="moviesystem.GUI.AddMov2CatController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviesystem.GUI.AddMov2CatController">
    <children>
-      <ListView fx:id="lstMov" layoutX="359.0" layoutY="68.0" onMouseClicked="#HandelClickOnMov" prefHeight="200.0" prefWidth="200.0" />
-      <ListView fx:id="lstCat" layoutX="41.0" layoutY="68.0" onMouseClicked="#handleClickOnCat" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="lstOfMovies" layoutX="359.0" layoutY="68.0" onMouseClicked="#HandelClickOnMov" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="lstCategory" layoutX="41.0" layoutY="68.0" onMouseClicked="#handleClickOnCat" prefHeight="200.0" prefWidth="200.0" />
       <Button layoutX="212.0" layoutY="315.0" mnemonicParsing="false" onAction="#handelConfirm" text="Confirm" />
       <Button layoutX="333.0" layoutY="315.0" mnemonicParsing="false" onAction="#handelCancel" text="Cancel" />
       <Label layoutX="77.0" layoutY="47.0" text="Please Select a Category" />
