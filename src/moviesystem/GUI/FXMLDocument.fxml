@@ -36,5 +36,7 @@
             <TableColumn fx:id="columnLastViewed" prefWidth="103.0" text="Last Viewed" />
         </columns>
       </TableView>
+      <Button layoutX="515.0" layoutY="620.0" mnemonicParsing="false" onAction="#handelRemoveMovFromCat" text="Remove Movie From Category" />
+      <Label fx:id="txtHidden" layoutX="243.0" layoutY="663.0" />
    </children>
 </AnchorPane>

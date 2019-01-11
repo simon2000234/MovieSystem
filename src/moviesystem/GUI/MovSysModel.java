@@ -219,10 +219,20 @@ public class MovSysModel
         return selectedMovie;
     }
  
- public void setSelectedCategory(Movie selectedMovie)
+ public void setSelectedMovie(Movie selectedMovie)
     {
         this.selectedMovie = selectedMovie;
     }
 
+     public void removieMovieFromCategory(int movieId, int categoryId)
+     {
+        try
+        {
+            msm.removieMovieFromCategory(movieId, categoryId);
+        } catch (SQLException ex)
+        {
+            //dab
+        }
+     }
 
 }

@@ -9,6 +9,8 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import moviesystem.BLL.MovSysManager;
+import moviesystem.GUI.MovSysModel;
 //import org.jsoup.Jsoup;
 //import org.jsoup.nodes.Document;
 //import org.jsoup.select.Elements;
@@ -20,35 +22,19 @@ import java.sql.SQLException;
 public class FileTester {
 
     public static void main(String[] args) throws SQLException, IOException {
-        /*
-        Dette viser navn og rating på filmen. Der skal være et link for at det virker, dog også code smells. Richart :)
-         */
-//        try {
-//            Document doc = Jsoup.connect("https://www.imdb.com/title/tt1825683/?ref_=tt_rec_tti/").userAgent("Mozilla/17.0").get();
-//            Elements movTemp = doc.select("div.titleBar");
-//
-//            Elements ratTemp = doc.select("div.imdbRating");
-//            for (org.jsoup.nodes.Element filmNavn : movTemp) {
-//                System.out.println(filmNavn.getElementsByTag("h1").first().text());
-//
-//            }
-//        } catch (IOException e) {
-//
-//        }
-//        {
-//            try {
-//                Document doc = Jsoup.connect("https://www.imdb.com/title/tt1825683/?ref_=tt_rec_tti/").userAgent("Mozilla/17.0").get();
-//                Elements movTemp = doc.select("div.imdbRating");
-//
-//                for (org.jsoup.nodes.Element ratingValue : movTemp) {
-//                    System.out.println("" + ratingValue.getElementsByTag("span").first().text());
-//
-//                }
-//            } catch (IOException e) {
-//
-//            }
-//
-//        }
+        MovieDAO MovieDAO = new MovieDAO();
+        MovSysManager MovSysManager = new MovSysManager();
+        MovSysModel MovSysModel = new MovSysModel();
+        
+        
+        
+        
+        
+         
+        
+        
+        
+        
     }
 }
 

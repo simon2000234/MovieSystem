@@ -26,76 +26,76 @@ import moviesystem.DAL.mp4toDB;
  */
 public class MovSysManager
 {
-
+    
     private MediaPlayer mediaPlayer;
     private CategoryDAO catDAO;
     private MovieDAO movDAO;
     private mp4toDB mp4;
-
+    
     public MovSysManager()
     {
         catDAO = new CategoryDAO();
         movDAO = new MovieDAO();
         mp4 = new mp4toDB();
     }
-
+    
     public void createMovie(String name, double rating, String filePath) throws SQLException
     {
         movDAO.createMovie(name, rating, filePath);
     }
-
+    
     public void deleteMovie(int movieId) throws SQLException
     {
         movDAO.deleteMovie(movieId);
     }
-
+    
     public void setPRateMovie(int movieId, double rating) throws SQLException
     {
         movDAO.setPRateMovie(movieId, rating);
     }
-
+    
     public void setLastView(int movieId, String dayWatched) throws SQLException
     {
         movDAO.setLastView(movieId, dayWatched);
     }
-
+    
     public Category createCategory(String name)
     {
         Category newCat;
         newCat = catDAO.createCategory(name);
         return newCat;
     }
-
+    
     public void removeCategory(String name)
     {
         catDAO.removeCategory(name);
     }
-
+    
     public List<Category> getAllCategories()
     {
         return catDAO.getAllCategories();
     }
-
+    
     public List<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
     {
         return movDAO.getAllMoviesInACategory(categoryId);
     }
-
+    
     public List<Movie> searchMovies(SearchObject searchObject) throws SQLException
     {
         List<Movie> temp = new ArrayList<Movie>();
         List<Movie> theSearch = new ArrayList<Movie>();
         List<Integer> idCheck = new ArrayList<Integer>();
-
+        
         for (Category selectedCategory : searchObject.getSelectedCategories())
         {
             temp.addAll(movDAO.getAllMoviesInACategory(selectedCategory.getCategoryId()));
         }
-
+        
         double minImdb = searchObject.getMinImdbRating();
         BigDecimal minImdbRating = new BigDecimal(searchObject.getMinImdbRating());
         BigDecimal minPersonalRating = new BigDecimal(searchObject.getMinPersonalRating());
-
+        
         for (Movie movie : temp)
         {
             BigDecimal movieRating = new BigDecimal(movie.getRating());
@@ -114,18 +114,21 @@ public class MovSysManager
         }
         return theSearch;
     }
-
+    
     public String pickFile()
-
+    
     {
-        return mp4.pickFile();
-
+        return mp4.pickFile();  
     }
     
-
     public void addMovieToCat(int movieId, int catId) throws SQLException
     {
         movDAO.addMovieToCat(movieId, catId);
-
+        
+    }
+    
+    public void removieMovieFromCategory(int movieId, int categoryId) throws SQLException
+    {
+        movDAO.removieMovieFromCategory(movieId, categoryId);
     }
 }

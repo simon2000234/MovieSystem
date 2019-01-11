@@ -137,4 +137,21 @@ public class MovieDAO
         }
 
     }
+    
+    public void removieMovieFromCategory(int movieId, int categoryId) throws SQLException
+    {
+        String sql = "DELETE FROM CatMov WHERE MovieId =? AND CategoryId =?";
+        if (categoryId == 1018)
+        {
+            System.out.println("nope");
+            return;
+        }
+        try (Connection con = dbConnect.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, movieId);
+            st.setInt(2, categoryId);
+            st.executeUpdate();
+        }
+    }
 }
