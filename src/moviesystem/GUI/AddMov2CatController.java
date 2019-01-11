@@ -7,10 +7,7 @@ package moviesystem.GUI;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,16 +27,17 @@ import moviesystem.BE.Movie;
 public class AddMov2CatController implements Initializable
 {
 
-    @FXML
-    private ListView<Movie> lstMov;
-    @FXML
-    private ListView<Category> lstCat;
+
     @FXML
     private Label txtHidden;
     private MovSysModel msmodel;
     private Movie selectedMovie;
     private Category selectedCategory;
     private boolean isMovieInCat;
+    @FXML
+    private ListView<Movie> lstOfMovies;
+    @FXML
+    private ListView<Category> lstCategory;
 
     /**
      * Initializes the controller class.
@@ -52,13 +50,13 @@ public class AddMov2CatController implements Initializable
     @FXML
     private void HandelClickOnMov(MouseEvent event)
     {
-        selectedMovie = lstMov.getSelectionModel().getSelectedItem();
+        selectedMovie = lstOfMovies.getSelectionModel().getSelectedItem();
     }
 
     @FXML
     private void handleClickOnCat(MouseEvent event)
     {
-        selectedCategory = lstCat.getSelectionModel().getSelectedItem();
+        selectedCategory = lstCategory.getSelectionModel().getSelectedItem();
     }
 
     @FXML
@@ -97,10 +95,10 @@ public class AddMov2CatController implements Initializable
     public void setMsmodel(MovSysModel msmodel)
     {
         this.msmodel = msmodel;
-        lstCat.setItems(msmodel.getCategories());
+        lstCategory.setItems(this.msmodel.getCategories());
         try
         {
-            lstMov.setItems(msmodel.getAllMoviesInACategory(1018));
+            lstOfMovies.setItems(this.msmodel.getAllMoviesInACategory(1018));
         } catch (SQLException ex)
         {
             //yolo

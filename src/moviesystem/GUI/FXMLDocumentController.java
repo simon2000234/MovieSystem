@@ -101,7 +101,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handledeletemovie(ActionEvent event)
     {
-        msmodel.deleteMovie(msmodel.get);
+      //  msmodel.deleteMovie(msmodel.get);
     }
 
     @FXML
@@ -297,6 +297,7 @@ public class FXMLDocumentController implements Initializable
         lstmovie.setItems(msmodel.getSearch(msmodel.search(searchText, minImdb, minPersonal, catFilter)));
     }
 
+    @FXML
     private void handleAddMov2Cat(ActionEvent event)
     {
         Parent root;
