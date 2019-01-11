@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import moviesystem.BE.Category;
@@ -42,8 +46,6 @@ public class FXMLDocumentController implements Initializable
     private Label label;
     @FXML
     private ListView<Category> lstcat;
-    @FXML
-    private ListView<Movie> lstmovie;
     private MovSysModel msmodel;
     @FXML
     private TextField txtfilter;
@@ -59,6 +61,14 @@ public class FXMLDocumentController implements Initializable
     private TextField txtPersonalRating;
     @FXML
     private Button btnSearch;
+    @FXML
+    private TableView<Movie> tableMovie;
+    @FXML
+    private TableColumn<Movie, String> columnTitle;
+    @FXML
+    private TableColumn<Movie, Double> columnRating;
+    @FXML
+    private TableColumn<Movie, Double> columnPersonalRating;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -67,9 +77,12 @@ public class FXMLDocumentController implements Initializable
         lstcat.setItems(msmodel.getCategories());
         cmbCategorySelecter.getItems().addAll(msmodel.getCatSelect());
         lstActiveCatFilter.setItems(msmodel.getActiveCatFilter());
+        columnTitle.setCellValueFactory(new PropertyValueFactory<>("name"));
+        columnRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        columnPersonalRating.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().getpRating()));
         try
         {
-            lstmovie.setItems(msmodel.getAllMoviesInACategory(1018));
+            tableMovie.setItems(msmodel.getAllMoviesInACategory(1018));
         } catch (SQLException ex)
         {
             //Jeg er så glad idag
@@ -178,11 +191,11 @@ public class FXMLDocumentController implements Initializable
         msmodel.setSelectedCategory(currentcat);
         if (currentcat == null)
         {
-            lstmovie.setItems(msmodel.getAllMoviesInACategory(1018));
+            tableMovie.setItems(msmodel.getAllMoviesInACategory(1018));
         } else
         {
             System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
-            lstmovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
+            tableMovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
         }
     }
 
@@ -227,7 +240,7 @@ public class FXMLDocumentController implements Initializable
             txtRatingIMDB.setText("");
             txtPersonalRating.setText("");
             txtfilter.setText("");
-            lstmovie.setItems(msmodel.getAllMoviesInACategory(1018));
+            tableMovie.setItems(msmodel.getAllMoviesInACategory(1018));
         } catch (SQLException ex)
         {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
@@ -238,7 +251,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleClickOnMovie(MouseEvent event)
     {
-        Movie lastClickedMovie = lstmovie.getSelectionModel().getSelectedItem();
+        Movie lastClickedMovie = tableMovie.getSelectionModel().getSelectedItem();
         msmodel.setLastClickedMovie(lastClickedMovie);
     }
 
@@ -294,7 +307,7 @@ public class FXMLDocumentController implements Initializable
         {
             catFilter.addAll(msmodel.getCatFilter());
         }
-        lstmovie.setItems(msmodel.getSearch(msmodel.search(searchText, minImdb, minPersonal, catFilter)));
+        tableMovie.setItems(msmodel.getSearch(msmodel.search(searchText, minImdb, minPersonal, catFilter)));
     }
 
     @FXML
