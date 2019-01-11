@@ -101,7 +101,8 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handledeletemovie(ActionEvent event)
     {
-        msmodel.deleteMovie(msmodel.get);
+     msmodel.deleteMovie(lstmovie.getSelectionModel().getSelectedItem().getId()); 
+      
     }
 
     @FXML

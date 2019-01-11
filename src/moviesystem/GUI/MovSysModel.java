@@ -219,7 +219,7 @@ public class MovSysModel
         return selectedMovie;
     }
  
- public void setSelectedCategory(Movie selectedMovie)
+ public void setSelectedMovie(Movie selectedMovie)
     {
         this.selectedMovie = selectedMovie;
     }
