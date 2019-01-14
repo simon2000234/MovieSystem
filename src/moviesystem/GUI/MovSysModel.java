@@ -104,13 +104,20 @@ public class MovSysModel
     {
         return selectedCategory;
     }
-    
 
     public void setSelectedCategory(Category selectedCategory)
     {
         this.selectedCategory = selectedCategory;
     }
 
+    /**
+     * This will return a list of all the movies in a category, it also converts
+     * the list into an observableList
+     *
+     * @param categoryId the id of the category that you want all movies from
+     * @return a list of all movies in a category
+     * @throws SQLException
+     */
     public ObservableList<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
     {
         movies.clear();
@@ -139,6 +146,13 @@ public class MovSysModel
         this.lastClickedMovie = lastClickedMovie;
     }
 
+    /**
+     * This saves the day that you last saw the movie
+     *
+     * @param movieId the id of the movie that you watched
+     * @param dayWatched the day you watched it on
+     * @throws SQLException
+     */
     public void setLastView(int movieId, String dayWatched)
     {
         try
@@ -150,6 +164,15 @@ public class MovSysModel
         }
     }
 
+    /**
+     * This allows you to add a personal rating to the movies bassed on how much
+     * you like them
+     *
+     * @param movieId the id of the movie that you wish to rate
+     * @param rating the rating that you are giving the movie, must be between 0
+     * and 10
+     * @throws SQLException
+     */
     public void setPRateMovie(int movieId, double rating)
     {
         try
@@ -180,12 +203,21 @@ public class MovSysModel
             Logger.getLogger(MovSysModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return theSearch;
-        
+
     }
+
+    /**
+     * Adds a movie to a categpry
+     *
+     * @param movieId the id of the movie that you want to add
+     * @param catId the id of the category that you wish to add the movie too
+     * @throws SQLException
+     */
     public void addMovieToCat(int movieId, int catId) throws SQLException
     {
         msm.addMovieToCat(movieId, catId);
     }
+
 
   
     /**
@@ -193,11 +225,21 @@ public class MovSysModel
      * @return den valget file 
      * 
      */
+
+ 
     public String pickFile()
     {
         return msm.pickFile();
     }
 
+    /**
+     * Creates a movie in the database
+     *
+     * @param name The name of the movie
+     * @param rating The imdb rating of the movie, must be between 0 and 10
+     * @param filePath the path to the mp4 file on the computer
+     * @throws SQLException
+     */
     public void createMovie(String name, double rating, String filePath)
     {
         try
@@ -208,7 +250,14 @@ public class MovSysModel
             //dab dab
         }
     }
-    
+
+    /**
+     * Deletes a movie from the datebase, both the movie itself and remove it
+     * from the categorys it is in
+     *
+     * @param movieId the id of the movie that you wish to delete
+     * @throws SQLException
+     */
     public void deleteMovie(int movieId)
     {
         try
@@ -219,18 +268,26 @@ public class MovSysModel
             Logger.getLogger(MovSysModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
- public Movie getSelectedMovie()
+
+    public Movie getSelectedMovie()
     {
         return selectedMovie;
     }
- 
- public void setSelectedMovie(Movie selectedMovie)
+
+    public void setSelectedMovie(Movie selectedMovie)
     {
         this.selectedMovie = selectedMovie;
     }
 
-     public void removieMovieFromCategory(int movieId, int categoryId)
-     {
+    /**
+     * removes a movie from category
+     *
+     * @param movieId the id of the movie that you wish to remove
+     * @param categoryId the id of the category that you wish to remove it from
+     * @throws SQLException
+     */
+    public void removieMovieFromCategory(int movieId, int categoryId)
+    {
         try
         {
             msm.removieMovieFromCategory(movieId, categoryId);
@@ -238,6 +295,6 @@ public class MovSysModel
         {
             //dab
         }
-     }
+    }
 
 }
