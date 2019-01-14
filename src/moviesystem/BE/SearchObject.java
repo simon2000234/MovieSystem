@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Caspe
+ * @author Casper
  */
 public class SearchObject
 {

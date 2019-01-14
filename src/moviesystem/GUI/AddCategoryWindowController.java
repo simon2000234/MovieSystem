@@ -39,12 +39,18 @@ public class AddCategoryWindowController implements Initializable
     }    
 
     @FXML
+    /**
+     * Creates a category with the given name
+     */
     private void handleSaveButton(ActionEvent event)
     {
         msmodel.createCategory(txtAddCategoryName.getText());
     }
 
     @FXML
+    /**
+     * Closes the stage.
+     */
     private void handleCloseButton(ActionEvent event)
     {
         Stage stage = (Stage) btnAddCategoryClose.getScene().getWindow();
