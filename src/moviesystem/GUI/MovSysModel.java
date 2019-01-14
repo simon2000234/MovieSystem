@@ -110,6 +110,14 @@ public class MovSysModel
         this.selectedCategory = selectedCategory;
     }
 
+    /**
+     * This will return a list of all the movies in a category, it also converts
+     * the list into an observableList
+     *
+     * @param categoryId the id of the category that you want all movies from
+     * @return a list of all movies in a category
+     * @throws SQLException
+     */
     public ObservableList<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
     {
         movies.clear();
