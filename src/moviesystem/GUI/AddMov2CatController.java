@@ -27,7 +27,6 @@ import moviesystem.BE.Movie;
 public class AddMov2CatController implements Initializable
 {
 
-
     @FXML
     private Label txtHidden;
     private MovSysModel msmodel;
@@ -48,18 +47,29 @@ public class AddMov2CatController implements Initializable
     }
 
     @FXML
+    /**
+     * Saves the movie that you last clicked on
+     */
     private void HandelClickOnMov(MouseEvent event)
     {
         selectedMovie = lstOfMovies.getSelectionModel().getSelectedItem();
     }
 
     @FXML
+    /**
+     * Saves the category that you last clicked on
+     */
     private void handleClickOnCat(MouseEvent event)
     {
         selectedCategory = lstCategory.getSelectionModel().getSelectedItem();
     }
 
     @FXML
+    /**
+     * adds the saved movie to the saved category, it checks if you have
+     * sellected a movie and a category and if the moive is already in the
+     * category
+     */
     private void handelConfirm(ActionEvent event) throws SQLException
     {
         if (selectedCategory == null || selectedMovie == null)
@@ -86,12 +96,21 @@ public class AddMov2CatController implements Initializable
     }
 
     @FXML
+    /**
+     * Closes the window
+     */
     private void handelCancel(ActionEvent event)
     {
         Stage stage = (Stage) txtHidden.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Sets the model to be the same as the main view, and loads items into the
+     * 2 listviews
+     *
+     * @param msmodel
+     */
     public void setMsmodel(MovSysModel msmodel)
     {
         this.msmodel = msmodel;
