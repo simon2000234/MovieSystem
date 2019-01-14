@@ -39,23 +39,37 @@ public class AddCategoryWindowController implements Initializable
     }    
 
     @FXML
+    /**
+     * adds a new category to the database
+     */
     private void handleSaveButton(ActionEvent event)
     {
         msmodel.createCategory(txtAddCategoryName.getText());
     }
 
     @FXML
+    /**
+     * Closes the window
+     */
     private void handleCloseButton(ActionEvent event)
     {
         Stage stage = (Stage) btnAddCategoryClose.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * gets the model
+     * @return the model
+     */
     public MovSysModel getMsmodel()
     {
         return msmodel;
     }
 
+    /**
+     * sets the model
+     * @param msmodel 
+     */
     public void setMsmodel(MovSysModel msmodel)
     {
         this.msmodel = msmodel;
