@@ -187,7 +187,12 @@ public class MovSysModel
         msm.addMovieToCat(movieId, catId);
     }
 
-
+  
+    /**
+     * 
+     * @return den valget file 
+     * 
+     */
     public String pickFile()
     {
         return msm.pickFile();

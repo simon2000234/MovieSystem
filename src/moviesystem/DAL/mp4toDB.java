@@ -25,6 +25,13 @@ public class mp4toDB
         dbConnect = new DBConnectionProvider();
     }
     
+    
+    /**
+     * 
+     * @return filename
+     * giver stien på den mp4 file man valger 
+     * samt den åber et windue hvor man jeg vælge en file
+     */
     public String pickFile(){
         FileChooser fileChooser;
         fileChooser = new FileChooser();

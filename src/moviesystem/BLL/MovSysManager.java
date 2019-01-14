@@ -115,6 +115,13 @@ public class MovSysManager
         return theSearch;
     }
     
+    /**
+     * 
+     * @return
+     * sender den valget file vider 
+     * til GUI.
+     */
+     
     public String pickFile()
     
     {
