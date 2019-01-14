@@ -37,12 +37,20 @@ public class RateMovieController implements Initializable
         // TODO
     }
 
+    /**
+     * sets the model  
+     * @param msmodel the model
+     */
     public void setMsmodel(MovSysModel msmodel)
     {
         this.msmodel = msmodel;
     }
 
     @FXML
+    /**
+     * sets a personal rating of the movie in the database
+     * the rating must be between 0 and 10
+     */
     private void handelConfirm(ActionEvent event)
     {
         String inputText = txtRating.getText();
@@ -59,6 +67,9 @@ public class RateMovieController implements Initializable
     }
 
     @FXML
+    /**
+     * closes the window
+     */
     private void handleCancel(ActionEvent event)
     {
         Stage stage = (Stage) txtRating.getScene().getWindow();

@@ -69,6 +69,9 @@ public class AddMovieController implements Initializable
     }
 
     @FXML
+    /**
+     * adds the movie in the database
+     */
     private void handleAddMovie(ActionEvent event)
     {
         {
@@ -77,6 +80,9 @@ public class AddMovieController implements Initializable
     }
 
     @FXML
+    /**
+     * closes the window
+     */
     private void handleChanelMovie(ActionEvent event)
     {
         Stage stage = (Stage) txtRating.getScene().getWindow();
@@ -84,6 +90,9 @@ public class AddMovieController implements Initializable
     }
 
     @FXML
+    /**
+     * lets you choose the filepath of the movie
+     */
     private void handleChooseFile(ActionEvent event)
     {
         
