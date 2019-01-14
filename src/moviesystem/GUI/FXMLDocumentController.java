@@ -120,7 +120,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handledeletemovie(ActionEvent event)
     {
-     msmodel.deleteMovie(tableMovie.getSelectionModel().getSelectedItem().getId()); 
+        msmodel.deleteMovie(tableMovie.getSelectionModel().getSelectedItem().getId());
     }
 
     @FXML
@@ -317,6 +317,9 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    /**
+     * Opens the window to add a movie to a category
+     */
     private void handleAddMov2Cat(ActionEvent event)
     {
         Parent root;
@@ -339,6 +342,10 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    /**
+     * Removes a movie from a category, checks if you have sellected a movie and
+     * a category
+     */
     private void handelRemoveMovFromCat(ActionEvent event)
     {
         if (tableMovie.getSelectionModel().getSelectedItem() == null || lstcat.getSelectionModel().getSelectedItem() == null)
