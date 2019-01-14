@@ -97,6 +97,9 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    /**
+     * opens a window to add movies
+     */
     private void handleaddmovie(ActionEvent event)
     {
         Parent root;
@@ -119,12 +122,19 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    /**
+     * deletes the sellected movie
+     */
     private void handledeletemovie(ActionEvent event)
     {
         msmodel.deleteMovie(tableMovie.getSelectionModel().getSelectedItem().getId());
     }
 
     @FXML
+    /**
+     * opens a windows to rate the selected movie, checks to see if you have
+     * selected a movie
+     */
     private void handleratemovie(ActionEvent event) throws IOException
     {
 
@@ -182,8 +192,8 @@ public class FXMLDocumentController implements Initializable
 
     @FXML
     /**
-     * Deletes the selected category, when button is clicked an alert window opens
-     * asking if you are sure you want to delete the selected category.
+     * Deletes the selected category, when button is clicked an alert window
+     * opens asking if you are sure you want to delete the selected category.
      */
     private void handledeletecat(ActionEvent event)
     {
@@ -199,6 +209,10 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    /**
+     * Changes the listview for movies to show the movies that are in the
+     * category you clicked on
+     */
     private void handleClickOnCategory(MouseEvent event) throws SQLException
     {
         Category currentcat = lstcat.getSelectionModel().getSelectedItem();
@@ -235,6 +249,9 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    /**
+     * Plays the selected movie, checks to see if you have selected a movie
+     */
     private void handlePlayMovie(ActionEvent event)
     {
         if (msmodel.getLastClickedMovie() == null)
@@ -270,6 +287,9 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    /**
+     * saves the movie that you last clicked on
+     */
     private void handleClickOnMovie(MouseEvent event)
     {
         Movie lastClickedMovie = tableMovie.getSelectionModel().getSelectedItem();
@@ -296,8 +316,9 @@ public class FXMLDocumentController implements Initializable
 
     /**
      * Fixes the search so that if nothing is entered, all movies will appear.
-     * If a field is left empty, the search will use a value that allows all movies
-     * to meet the requirement of the empty field, e.g. minimum rating 0.0
+     * If a field is left empty, the search will use a value that allows all
+     * movies to meet the requirement of the empty field, e.g. minimum rating
+     * 0.0
      */
     public void fixSearch()
     {
