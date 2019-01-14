@@ -30,6 +30,7 @@ public class MovieDAO
 
     /**
      * Creates a movie in the database
+     *
      * @param name The name of the movie
      * @param rating The imdb rating of the movie, must be between 0 and 10
      * @param filePath the path to the mp4 file on the computer
