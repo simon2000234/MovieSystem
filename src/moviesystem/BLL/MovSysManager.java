@@ -81,6 +81,16 @@ public class MovSysManager
         return movDAO.getAllMoviesInACategory(categoryId);
     }
     
+    /**
+     * Uses a searchObject which contains the information that a user provided
+     * in a filter. First creates a temporary list of all movies with the desired categories,
+     * then adds every movie that meets the required rating, personal rating and title/text
+     * to a list of movies that is then returned. Duplicates are handled by checking
+     * the movie ID, so a movie with the same movie ID won't appear multiple times on the list.
+     * @param searchObject
+     * @return a list of movies meeting the requirements of the filter.
+     * @throws SQLException 
+     */
     public List<Movie> searchMovies(SearchObject searchObject) throws SQLException
     {
         List<Movie> temp = new ArrayList<Movie>();
@@ -92,7 +102,6 @@ public class MovSysManager
             temp.addAll(movDAO.getAllMoviesInACategory(selectedCategory.getCategoryId()));
         }
         
-        double minImdb = searchObject.getMinImdbRating();
         BigDecimal minImdbRating = new BigDecimal(searchObject.getMinImdbRating());
         BigDecimal minPersonalRating = new BigDecimal(searchObject.getMinPersonalRating());
         

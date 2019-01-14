@@ -16,7 +16,7 @@ import moviesystem.BE.Category;
 
 /**
  *
- * @author Caspe
+ * @author Casper
  */
 public class CategoryDAO
 {

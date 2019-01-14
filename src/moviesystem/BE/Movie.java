@@ -14,10 +14,10 @@ public class Movie
 
     private int id;
     private String name;
-    private double rating;
+    private double rating; //imdb rating
     private String filePath;
     private String lastview;
-    private double pRating;
+    private double pRating; //personal rating
 
     public Movie(int id, String name, double rating, String filePath, String lastview, double pRating)
     {

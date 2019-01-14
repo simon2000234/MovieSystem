@@ -77,6 +77,7 @@ public class FXMLDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        //Sets all the items of the listviews and tableview and sets the columns of the tableview.
         this.msmodel = new MovSysModel();
         lstcat.setItems(msmodel.getCategories());
         cmbCategorySelecter.getItems().addAll(msmodel.getCatSelect());
@@ -154,6 +155,9 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    /**
+     * Opens a new scene where a category can be created.
+     */
     private void handleaddcat(ActionEvent event) throws IOException
     {
 
@@ -177,6 +181,10 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    /**
+     * Deletes the selected category, when button is clicked an alert window opens
+     * asking if you are sure you want to delete the selected category.
+     */
     private void handledeletecat(ActionEvent event)
     {
         Alert confirmDelete = new Alert(Alert.AlertType.CONFIRMATION, "Delete: " + msmodel.getSelectedCategory().getCategoryName() + "?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
@@ -212,6 +220,9 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    /**
+     * Adds the chosen category to the active category filter for the search.
+     */
     private void handleCategorySelect(ActionEvent event)
     {
         if (msmodel.getCatFilter().contains(cmbCategorySelecter.getSelectionModel().getSelectedItem()))
@@ -238,6 +249,10 @@ public class FXMLDocumentController implements Initializable
     }
 
     @FXML
+    /**
+     * Clears the active filter, removes the text present in the TextFields and
+     * returns the tableview containing movies back to showing all movies.
+     */
     private void handleClearFilterButton(ActionEvent event)
     {
         try
@@ -279,6 +294,11 @@ public class FXMLDocumentController implements Initializable
         fixSearch();
     }
 
+    /**
+     * Fixes the search so that if nothing is entered, all movies will appear.
+     * If a field is left empty, the search will use a value that allows all movies
+     * to meet the requirement of the empty field, e.g. minimum rating 0.0
+     */
     public void fixSearch()
     {
         String searchText;
