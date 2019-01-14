@@ -28,6 +28,13 @@ public class MovieDAO
         dbConnect = new DBConnectionProvider();
     }
 
+    /**
+     * Creates a movie in the database
+     * @param name The name of the movie
+     * @param rating The imdb rating of the movie, must be between 0 and 10
+     * @param filePath the path to the mp4 file on the computer
+     * @throws SQLException
+     */
     public void createMovie(String name, double rating, String filePath) throws SQLException
     {
         if (rating < 0.0 || rating > 10.0)
@@ -59,6 +66,12 @@ public class MovieDAO
         }
     }
 
+    /**
+     * Adds a movie to a categpry
+     * @param movieId the id of the movie that you want to add
+     * @param catId the id of the category that you wish to add the movie too
+     * @throws SQLException
+     */
     public void addMovieToCat(int movieId, int catId) throws SQLException
     {
         String sql = "INSERT INTO CatMov(CategoryId, MovieId) VALUES (?,?);";
@@ -71,6 +84,12 @@ public class MovieDAO
         }
     }
 
+    /**
+     * Deletes a movie from the datebase, both the movie itself and
+     * remove it from the categorys it is in
+     * @param movieId the id of the movie that you wish to delete
+     * @throws SQLException
+     */
     public void deleteMovie(int movieId) throws SQLException
     {
         String sql = "DELETE FROM Movie WHERE id =?;";
@@ -87,8 +106,21 @@ public class MovieDAO
         }
     }
 
+    /**
+     * This allows you to add a personal rating to the movies
+     * bassed on how much you like them
+     * @param movieId the id of the movie that you wish to rate
+     * @param rating the rating that you are giving the movie,
+     * must be between 0 and 10
+     * @throws SQLException
+     */
     public void setPRateMovie(int movieId, double rating) throws SQLException
     {
+        if (rating < 0.0 || rating > 10.0)
+        {
+            System.out.println("kun 0.0 til 10.0 dit fjols");
+            return;
+        }
         String sql = "UPDATE Movie set personalRating = ? where id = ?;";
         try (Connection con = dbConnect.getConnection())
         {
@@ -99,6 +131,12 @@ public class MovieDAO
         }
     }
 
+    /**
+     * This saves the day that you last saw the movie
+     * @param movieId the id of the movie that you watched
+     * @param dayWatched the day you watched it on
+     * @throws SQLException
+     */
     public void setLastView(int movieId, String dayWatched) throws SQLException
     {
         String sql = "UPDATE Movie set lastView = ? where id = ?;";
@@ -111,6 +149,12 @@ public class MovieDAO
         }
     }
 
+    /**
+     * This will return a list of all the movies in a specific category
+     * @param categoryId the id of the category that you want all movies from
+     * @return a list of all movies in a category
+     * @throws SQLException
+     */
     public List<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
     {
         List<Movie> Movies = new ArrayList<>();
@@ -138,6 +182,12 @@ public class MovieDAO
 
     }
     
+    /**
+     * removes a movie from category
+     * @param movieId the id of the movie that you wish to remove
+     * @param categoryId the id of the category that you wish to remove it from
+     * @throws SQLException
+     */
     public void removieMovieFromCategory(int movieId, int categoryId) throws SQLException
     {
         String sql = "DELETE FROM CatMov WHERE MovieId =? AND CategoryId =?";
