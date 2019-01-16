@@ -33,9 +33,9 @@ public class MovSysModel
 
     private Category selectedCategory;
     private Movie selectedMovie;
-    private ArrayList<Category> catSelecter;
-    private ArrayList<Category> filterCat;
-    private ObservableList<Category> activeFilterCat;
+    private ArrayList<Category> catSelecter; //The categories that can be chosen in the filter
+    private ArrayList<Category> filterCat; //The active categories in the filter section used for search
+    private ObservableList<Category> activeFilterCat; //The shown categories in the filter section
     private Movie lastClickedMovie;
 
     public MovSysModel()
