@@ -6,6 +6,7 @@
 package moviesystem.GUI;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,7 +39,8 @@ public class RateMovieController implements Initializable
     }
 
     /**
-     * sets the model  
+     * sets the model
+     *
      * @param msmodel the model
      */
     public void setMsmodel(MovSysModel msmodel)
@@ -48,8 +50,8 @@ public class RateMovieController implements Initializable
 
     @FXML
     /**
-     * sets a personal rating of the movie in the database
-     * the rating must be between 0 and 10
+     * sets a personal rating of the movie in the database the rating must be
+     * between 0 and 10
      */
     private void handelConfirm(ActionEvent event)
     {
@@ -58,9 +60,10 @@ public class RateMovieController implements Initializable
         {
             double inputDouble = Double.valueOf(txtRating.getText());
             msmodel.setPRateMovie(msmodel.getLastClickedMovie().getId(), inputDouble);
+            msmodel.loadAllMoviesInACategory(msmodel.getSelectedCategory().getCategoryId());
             Stage stage = (Stage) txtRating.getScene().getWindow();
             stage.close();
-        } catch (NullPointerException | NumberFormatException ex)
+        } catch (NullPointerException | NumberFormatException | SQLException ex)
         {
             txtMain.setText("Please only nummbers from 0 to 10... dum dum");
         }

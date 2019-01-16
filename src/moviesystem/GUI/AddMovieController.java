@@ -95,8 +95,6 @@ public class AddMovieController implements Initializable
      */
     private void handleChooseFile(ActionEvent event)
     {
-        
-        
       this.filepath = msmodel.pickFile();
      txtFilePath.setText(this.filepath);
     }
