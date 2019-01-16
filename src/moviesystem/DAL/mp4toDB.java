@@ -6,6 +6,7 @@
 package moviesystem.DAL;
 
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 
 /**
@@ -35,6 +36,8 @@ public class mp4toDB
     public String pickFile(){
         FileChooser fileChooser;
         fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter(".mp4","*.mp4"));
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter(".mpeg4", "*.mpeg4"));
         file = fileChooser.showOpenDialog(null).getAbsoluteFile().getPath();
         fileName= file;
     return fileName;

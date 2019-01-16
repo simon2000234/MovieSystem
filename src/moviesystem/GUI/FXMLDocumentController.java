@@ -158,7 +158,7 @@ public class FXMLDocumentController implements Initializable
 
                 RateMovieController rmController = loader.getController();
                 rmController.setMsmodel(msmodel);
-
+                
             } catch (IOException ex)
             {
                 //something
