@@ -77,7 +77,8 @@ public class FXMLDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        //Sets all the items of the listviews and tableview and sets the columns of the tableview.
+        ReminderPopup();
+                //Sets all the items of the listviews and tableview and sets the columns of the tableview.
         this.msmodel = new MovSysModel();
         lstcat.setItems(msmodel.getCategories());
         cmbCategorySelecter.getItems().addAll(msmodel.getCatSelect());
@@ -89,7 +90,8 @@ public class FXMLDocumentController implements Initializable
         columnLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastview"));
         try
         {
-            tableMovie.setItems(msmodel.getAllMoviesInACategory(1018));
+            tableMovie.setItems(msmodel.getMovies());
+            msmodel.loadAllMoviesInACategory(1018);
         } catch (SQLException ex)
         {
             //Jeg er så glad idag
@@ -219,11 +221,13 @@ public class FXMLDocumentController implements Initializable
         msmodel.setSelectedCategory(currentcat);
         if (currentcat == null)
         {
-            tableMovie.setItems(msmodel.getAllMoviesInACategory(1018));
+            //tableMovie.setItems(msmodel.getMovies());
+            msmodel.loadAllMoviesInACategory(1018);
         } else
         {
             System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
-            tableMovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
+            //tableMovie.setItems(msmodel.getMovies());
+            msmodel.loadAllMoviesInACategory(currentcat.getCategoryId());
         }
     }
 
@@ -278,7 +282,8 @@ public class FXMLDocumentController implements Initializable
             txtRatingIMDB.setText("");
             txtPersonalRating.setText("");
             txtfilter.setText("");
-            tableMovie.setItems(msmodel.getAllMoviesInACategory(1018));
+            tableMovie.setItems(msmodel.getMovies());
+            msmodel.loadAllMoviesInACategory(1018);
         } catch (SQLException ex)
         {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
@@ -395,6 +400,25 @@ public class FXMLDocumentController implements Initializable
         } else
         {
             msmodel.removieMovieFromCategory(tableMovie.getSelectionModel().getSelectedItem().getId(), lstcat.getSelectionModel().getSelectedItem().getCategoryId());
+            try
+            {
+                msmodel.loadAllMoviesInACategory(lstcat.getSelectionModel().getSelectedItem().getCategoryId());
+            } catch (SQLException ex)
+            {
+                
+            }
         }
+    }
+
+    /**
+     * Creates an alert to remind the user to remove old movies with a low rating
+     */
+    public void ReminderPopup()
+    {
+        Alert popupReminder = new Alert(Alert.AlertType.INFORMATION);
+        popupReminder.setHeaderText(null);
+        popupReminder.setTitle("Reminder");
+        popupReminder.setContentText("Remember to delete all movies below 6 personal rating that haven't been opened in the past 2 years to clear up space");
+        popupReminder.showAndWait();
     }
 }

@@ -117,7 +117,8 @@ public class AddMov2CatController implements Initializable
         lstCategory.setItems(this.msmodel.getCategories());
         try
         {
-            lstOfMovies.setItems(this.msmodel.getAllMoviesInACategory(1018));
+            lstOfMovies.setItems(this.msmodel.getMovies());
+            this.msmodel.loadAllMoviesInACategory(1018);
         } catch (SQLException ex)
         {
             //yolo
