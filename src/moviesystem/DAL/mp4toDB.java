@@ -30,7 +30,7 @@ public class mp4toDB
      * 
      * @return filename
      * giver stien på den mp4 file man valger 
-     * samt den åber et windue hvor man jeg vælge en file
+     * samt den åber et windue hvor man kan vælge en file
      */
     public String pickFile(){
         FileChooser fileChooser;
