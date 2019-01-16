@@ -86,7 +86,6 @@ public class FXMLDocumentController implements Initializable
         columnTitle.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
         columnPersonalRating.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().getpRating()));
-//        columnCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         columnLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastview"));
         try
         {
@@ -221,12 +220,9 @@ public class FXMLDocumentController implements Initializable
         msmodel.setSelectedCategory(currentcat);
         if (currentcat == null)
         {
-            //tableMovie.setItems(msmodel.getMovies());
             msmodel.loadAllMoviesInACategory(1018);
         } else
         {
-            System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
-            //tableMovie.setItems(msmodel.getMovies());
             msmodel.loadAllMoviesInACategory(currentcat.getCategoryId());
         }
     }
