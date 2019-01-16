@@ -77,7 +77,8 @@ public class FXMLDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        //Sets all the items of the listviews and tableview and sets the columns of the tableview.
+        ReminderPopup();
+                //Sets all the items of the listviews and tableview and sets the columns of the tableview.
         this.msmodel = new MovSysModel();
         lstcat.setItems(msmodel.getCategories());
         cmbCategorySelecter.getItems().addAll(msmodel.getCatSelect());
@@ -407,5 +408,17 @@ public class FXMLDocumentController implements Initializable
                 
             }
         }
+    }
+
+    /**
+     * Creates an alert to remind the user to remove old movies with a low rating
+     */
+    public void ReminderPopup()
+    {
+        Alert popupReminder = new Alert(Alert.AlertType.INFORMATION);
+        popupReminder.setHeaderText(null);
+        popupReminder.setTitle("Reminder");
+        popupReminder.setContentText("Remember to delete all movies below 6 personal rating that haven't been opened in the past 2 years to clear up space");
+        popupReminder.showAndWait();
     }
 }
