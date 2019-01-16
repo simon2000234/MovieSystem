@@ -53,8 +53,8 @@ public class MovSysModel
     }
 
     /**
-     * 
-     * @return an observablelist of all the categories 
+     *
+     * @return an observablelist of all the categories
      */
     public ObservableList<Category> getCategories()
     {
@@ -62,8 +62,9 @@ public class MovSysModel
     }
 
     /**
-     * 
-     * @return an observablelist of the categories that are currently added to the filter
+     *
+     * @return an observablelist of the categories that are currently added to
+     * the filter
      */
     public ObservableList<Category> getActiveCatFilter()
     {
@@ -82,6 +83,7 @@ public class MovSysModel
     /**
      * Adds a chosen category to both the arraylist and observablelist of the
      * filtered categories.
+     *
      * @param category
      * @return the chosen category.
      */
@@ -93,8 +95,8 @@ public class MovSysModel
     }
 
     /**
-     * 
-     * @return the arraylist of filtered categories used to create searches. 
+     *
+     * @return the arraylist of filtered categories used to create searches.
      */
     public ArrayList<Category> getCatFilter()
     {
@@ -104,6 +106,7 @@ public class MovSysModel
     /**
      * gets the categories for the box where one can select categories to add to
      * the filter
+     *
      * @return arraylist of selectable categories.
      */
     public ArrayList<Category> getCatSelect()
@@ -113,7 +116,8 @@ public class MovSysModel
 
     /**
      * Creates a category with the given name.
-     * @param name 
+     *
+     * @param name
      */
     public void createCategory(String name)
     {
@@ -123,7 +127,8 @@ public class MovSysModel
 
     /**
      * Deletes the category given as a parameter from the database.
-     * @param category 
+     *
+     * @param category
      */
     public void deleteCategory(Category category)
     {
@@ -136,8 +141,8 @@ public class MovSysModel
     }
 
     /**
-     * 
-     * @return the most recently selected category by the user. 
+     *
+     * @return the most recently selected category by the user.
      */
     public Category getSelectedCategory()
     {
@@ -147,7 +152,8 @@ public class MovSysModel
     /**
      * Sets the selectedCategory variable to the category most recently selected
      * by the user.
-     * @param selectedCategory 
+     *
+     * @param selectedCategory
      */
     public void setSelectedCategory(Category selectedCategory)
     {
@@ -155,11 +161,10 @@ public class MovSysModel
     }
 
     /**
-     * This will return a list of all the movies in a category, it also converts
-     * the list into an observableList
+     * This will refresh movies so that it contains the movies in the specified
+     * category
      *
-     * @param categoryId the id of the category that you want all movies from
-     * @return a list of all movies in a category
+     * @param categoryId the id of the category that you want
      * @throws SQLException
      */
     public void loadAllMoviesInACategory(int categoryId) throws SQLException
@@ -167,18 +172,28 @@ public class MovSysModel
         movies.clear();
         movies.addAll(msm.getAllMoviesInACategory(categoryId));
     }
-    
+
+    /**
+     * This will return a list of all the movies in a category
+     *
+     * @param categoryId the id of the category thay you want
+     * @return a list of all movies in a category
+     * @throws SQLException
+     */
     public ObservableList<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
     {
         return FXCollections.observableArrayList(msm.getAllMoviesInACategory(categoryId));
     }
 
+    /**
+     * 
+     * @return movies, an observable list
+     */
     public ObservableList<Movie> getMovies()
     {
         return movies;
     }
 
-    
     public void PlayMovie(Movie movie)
     {
         try
@@ -240,6 +255,7 @@ public class MovSysModel
 
     /**
      * Creates a SearchObject with all the given parameters.
+     *
      * @param searchString
      * @param imdbRating
      * @param personalRating
@@ -255,7 +271,9 @@ public class MovSysModel
 
     /**
      * Uses the given SearchObject to created a list of movies using the method
-     * in the bll layer. Then creates an ObservableList of the filtered movie list.
+     * in the bll layer. Then creates an ObservableList of the filtered movie
+     * list.
+     *
      * @param search
      * @return the ObservableList of the filtered movies.
      */
@@ -286,15 +304,11 @@ public class MovSysModel
         msm.addMovieToCat(movieId, catId);
     }
 
-
-  
     /**
-     * 
-     * @return den valget file 
-     * 
+     *
+     * @return den valget file
+     *
      */
-
- 
     public String pickFile()
     {
         return msm.pickFile();
