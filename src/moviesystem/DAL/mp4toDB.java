@@ -32,6 +32,8 @@ public class mp4toDB
      * @return filename
      * giver stien på den mp4 file man valger 
      * samt den åber et windue hvor man kan vælge en file
+     * der kan kun vægles mp4 filer 
+     * 
      */
     public String pickFile(){
         FileChooser fileChooser;
