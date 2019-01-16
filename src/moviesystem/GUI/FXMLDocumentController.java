@@ -89,7 +89,8 @@ public class FXMLDocumentController implements Initializable
         columnLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastview"));
         try
         {
-            tableMovie.setItems(msmodel.getAllMoviesInACategory(1018));
+            tableMovie.setItems(msmodel.getMovies());
+            msmodel.loadAllMoviesInACategory(1018);
         } catch (SQLException ex)
         {
             //Jeg er så glad idag
@@ -219,11 +220,13 @@ public class FXMLDocumentController implements Initializable
         msmodel.setSelectedCategory(currentcat);
         if (currentcat == null)
         {
-            tableMovie.setItems(msmodel.getAllMoviesInACategory(1018));
+            //tableMovie.setItems(msmodel.getMovies());
+            msmodel.loadAllMoviesInACategory(1018);
         } else
         {
             System.out.println("" + msmodel.getSelectedCategory().getCategoryName());
-            tableMovie.setItems(msmodel.getAllMoviesInACategory(currentcat.getCategoryId()));
+            //tableMovie.setItems(msmodel.getMovies());
+            msmodel.loadAllMoviesInACategory(currentcat.getCategoryId());
         }
     }
 
@@ -278,7 +281,8 @@ public class FXMLDocumentController implements Initializable
             txtRatingIMDB.setText("");
             txtPersonalRating.setText("");
             txtfilter.setText("");
-            tableMovie.setItems(msmodel.getAllMoviesInACategory(1018));
+            tableMovie.setItems(msmodel.getMovies());
+            msmodel.loadAllMoviesInACategory(1018);
         } catch (SQLException ex)
         {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
@@ -395,6 +399,13 @@ public class FXMLDocumentController implements Initializable
         } else
         {
             msmodel.removieMovieFromCategory(tableMovie.getSelectionModel().getSelectedItem().getId(), lstcat.getSelectionModel().getSelectedItem().getCategoryId());
+            try
+            {
+                msmodel.loadAllMoviesInACategory(lstcat.getSelectionModel().getSelectedItem().getCategoryId());
+            } catch (SQLException ex)
+            {
+                
+            }
         }
     }
 }

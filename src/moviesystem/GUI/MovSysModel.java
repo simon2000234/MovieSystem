@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -161,13 +162,23 @@ public class MovSysModel
      * @return a list of all movies in a category
      * @throws SQLException
      */
-    public ObservableList<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
+    public void loadAllMoviesInACategory(int categoryId) throws SQLException
     {
         movies.clear();
         movies.addAll(msm.getAllMoviesInACategory(categoryId));
+    }
+    
+    public ObservableList<Movie> getAllMoviesInACategory(int categoryId) throws SQLException
+    {
+        return FXCollections.observableArrayList(msm.getAllMoviesInACategory(categoryId));
+    }
+
+    public ObservableList<Movie> getMovies()
+    {
         return movies;
     }
 
+    
     public void PlayMovie(Movie movie)
     {
         try
