@@ -43,7 +43,18 @@ public class MovieDAO
             System.out.println("kun 0.0 til 10.0 dit fjols");
             return;
         }
-
+        
+        List<Movie> allMovies = getAllMoviesInACategory(1018);
+        
+        for (Movie allMovy : allMovies)
+        {
+            if(allMovy.getName().toLowerCase().equals(name.toLowerCase()))
+            {
+                System.out.println("There is already a movie with that name");
+                return;
+            }
+        }
+        
         String sql = "INSERT INTO Movie(name, rating, filePath) VALUES (?,?,?);";
         String sql2 = "INSERT INTO CatMov(CategoryId, MovieId) VALUES (?,?);";
         try (Connection con = dbConnect.getConnection())
