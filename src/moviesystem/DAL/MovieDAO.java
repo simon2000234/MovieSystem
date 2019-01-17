@@ -30,7 +30,6 @@ public class MovieDAO
 
     /**
      * Creates a movie in the database
-     *
      * @param name The name of the movie
      * @param rating The imdb rating of the movie, must be between 0 and 10
      * @param filePath the path to the mp4 file on the computer
@@ -43,7 +42,18 @@ public class MovieDAO
             System.out.println("kun 0.0 til 10.0 dit fjols");
             return;
         }
-
+        
+        List<Movie> allMovies = getAllMoviesInACategory(1018);
+        
+        for (Movie allMovy : allMovies)
+        {
+            if(allMovy.getName().toLowerCase().equals(name.toLowerCase()))
+            {
+                System.out.println("There is already a movie with that name");
+                return;
+            }
+        }
+        
         String sql = "INSERT INTO Movie(name, rating, filePath) VALUES (?,?,?);";
         String sql2 = "INSERT INTO CatMov(CategoryId, MovieId) VALUES (?,?);";
         try (Connection con = dbConnect.getConnection())

@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/GUI/MovSysModel.java</file>
             <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/BLL/MovSysManager.java</file>
+            <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/GUI/AddMov2CatController.java</file>
             <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/GUI/FXMLDocumentController.java</file>
             <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/DAL/CategoryDAO.java</file>
             <file>file:/C:/Users/andre/Documents/NetBeansProjects/MovieSystem/src/moviesystem/GUI/AddMovieController.java</file>
