@@ -27,7 +27,6 @@ public class MovieDAO
     {
         dbConnect = new DBConnectionProvider();
     }
-
     /**
      * Creates a movie in the database
      *
