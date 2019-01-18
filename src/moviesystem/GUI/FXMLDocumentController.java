@@ -78,7 +78,7 @@ public class FXMLDocumentController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         ReminderPopup();
-                //Sets all the items of the listviews and tableview and sets the columns of the tableview.
+        //Sets all the items of the listviews and tableview and sets the columns of the tableview.
         this.msmodel = new MovSysModel();
         lstcat.setItems(msmodel.getCategories());
         cmbCategorySelecter.getItems().addAll(msmodel.getCatSelect());
@@ -136,7 +136,7 @@ public class FXMLDocumentController implements Initializable
      * opens a windows to rate the selected movie, checks to see if you have
      * selected a movie
      */
-    private void handleratemovie(ActionEvent event) throws IOException
+    private void handleratemovie(ActionEvent event)
     {
 
         if (msmodel.getLastClickedMovie() == null)
@@ -157,7 +157,7 @@ public class FXMLDocumentController implements Initializable
 
                 RateMovieController rmController = loader.getController();
                 rmController.setMsmodel(msmodel);
-                
+
             } catch (IOException ex)
             {
                 //something
@@ -169,7 +169,7 @@ public class FXMLDocumentController implements Initializable
     /**
      * Opens a new scene where a category can be created.
      */
-    private void handleaddcat(ActionEvent event) throws IOException
+    private void handleaddcat(ActionEvent event)
     {
 
         Parent root;
@@ -214,16 +214,22 @@ public class FXMLDocumentController implements Initializable
      * Changes the listview for movies to show the movies that are in the
      * category you clicked on
      */
-    private void handleClickOnCategory(MouseEvent event) throws SQLException
+    private void handleClickOnCategory(MouseEvent event)
     {
         Category currentcat = lstcat.getSelectionModel().getSelectedItem();
         msmodel.setSelectedCategory(currentcat);
-        if (currentcat == null)
+        try
         {
-            msmodel.loadAllMoviesInACategory(1018);
-        } else
+            if (currentcat == null)
+            {
+                msmodel.loadAllMoviesInACategory(1018);
+            } else
+            {
+                msmodel.loadAllMoviesInACategory(currentcat.getCategoryId());
+            }
+        } catch (SQLException ex)
         {
-            msmodel.loadAllMoviesInACategory(currentcat.getCategoryId());
+            ex.printStackTrace();
         }
     }
 
@@ -401,13 +407,14 @@ public class FXMLDocumentController implements Initializable
                 msmodel.loadAllMoviesInACategory(lstcat.getSelectionModel().getSelectedItem().getCategoryId());
             } catch (SQLException ex)
             {
-                
+
             }
         }
     }
 
     /**
-     * Creates an alert to remind the user to remove old movies with a low rating
+     * Creates an alert to remind the user to remove old movies with a low
+     * rating
      */
     public void ReminderPopup()
     {
